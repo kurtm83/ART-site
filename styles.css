@@ -769,6 +769,7 @@ body.scroll-container {
 
 	.heading-primary {
 		font-size: 1.75rem;
+		margin-bottom: 0.125rem;
 	}
 	/* Mobile services layout */
 	.services-img {
@@ -778,4 +779,11 @@ body.scroll-container {
 	.services-text {
 		padding: 0 1rem;
 	}
+}
+
+/* NEW: Global blur text class */
+.blur-text {
+    color: var(--color-lime);
+    text-shadow: 0 0 3px var(--color-lime);
+    filter: blur(0.42px);
 }
