@@ -126,7 +126,8 @@ body.scroll-container {
 	width: 100%;
 	position: relative;
 	z-index: 1;
-	min-height: 90vh; /* Increased from 80vh for maximum vertical space */
+	min-height: 90vh;
+	margin-top: -2rem; /* Added negative margin to pull content up */
 }
 
 .centered {
@@ -185,17 +186,39 @@ body.scroll-container {
 }
 
 /* Typography */
+.welcome-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	position: relative;
+}
+
 .heading-primary {
 	font-size: 2.25rem;
 	font-weight: bold;
 	color: var(--color-lime);
-	margin-bottom: 0.5rem;
+	margin-bottom: 0rem;
+	line-height: 1;
+	align-self: flex-start;
+	margin-left: 15%;
+}
+
+.logo-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .subheading {
 	color: var(--color-magenta);
 	font-size: 1.125rem;
 	margin-bottom: 1rem;
+	width: 50rem;
+	max-width: 90%;
+	text-align: center;
+	margin: 1rem auto;
+	letter-spacing: 0.5em;
 }
 
 /* Components */
@@ -203,7 +226,7 @@ body.scroll-container {
 	width: 50rem;
 	height: 8rem;
 	max-width: 90%;
-	margin: auto;
+	margin: -1rem auto auto auto;
 }
 
 .services-list {
@@ -769,7 +792,7 @@ body.scroll-container {
 
 	.heading-primary {
 		font-size: 1.75rem;
-		margin-bottom: 0.125rem;
+		margin-bottom: 0.0625rem;
 	}
 	/* Mobile services layout */
 	.services-img {
