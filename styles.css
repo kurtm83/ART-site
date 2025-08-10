@@ -98,7 +98,7 @@ body.scroll-container {
 
 /* Main content */
 .main-content {
-	padding-top: 5rem;
+	padding-top: 8rem;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -213,11 +213,10 @@ body.scroll-container {
 .subheading {
 	color: var(--color-magenta);
 	font-size: 1.125rem;
-	margin-bottom: 1rem;
 	width: 50rem;
 	max-width: 90%;
 	text-align: center;
-	margin: 1rem auto;
+	margin: 0.25rem auto 1rem;
 	letter-spacing: 0.5em;
 }
 
@@ -230,15 +229,32 @@ body.scroll-container {
 }
 
 .services-list {
-	list-style-type: disc;
-	padding-left: 1rem; /* Reduced from 2rem to move bullets closer to left */
+	list-style-type: none;
+	padding-left: 2rem;
 	margin: 1rem 0;
 	display: inline-block;
 	text-align: left;
 }
 
 .services-list li {
-	margin-bottom: 0.5rem;
+	margin-bottom: 1.5rem;
+	position: relative;
+	transition: transform 0.3s ease;
+}
+
+.services-list.glow-arrow li::before {
+	content: "➜";
+	position: absolute;
+	left: -2rem;
+	color: var(--color-lime);
+	font-size: 1.2em;
+	text-shadow: 0 0 10px var(--color-lime),
+				 0 0 20px var(--color-lime),
+				 0 0 30px var(--color-lime);
+}
+
+.services-list.glow-arrow li:hover {
+	transform: translateX(10px);
 }
 
 .placeholder-box {
