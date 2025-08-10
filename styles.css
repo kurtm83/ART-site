@@ -239,7 +239,6 @@ body.scroll-container {
 .services-list li {
 	margin-bottom: 1.5rem;
 	position: relative;
-	transition: transform 0.3s ease;
 }
 
 .services-list.glow-arrow li::before {
@@ -251,10 +250,6 @@ body.scroll-container {
 	text-shadow: 0 0 10px var(--color-lime),
 				 0 0 20px var(--color-lime),
 				 0 0 30px var(--color-lime);
-}
-
-.services-list.glow-arrow li:hover {
-	transform: translateX(10px);
 }
 
 .placeholder-box {
