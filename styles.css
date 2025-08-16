@@ -726,6 +726,13 @@ body.scroll-container {
 	letter-spacing: 0.05em;
 }
 
+/* Contact section specific heading styling */
+#contact .heading-primary {
+	align-self: center;
+	margin-left: 0;
+	text-align: center;
+}
+
 .contact-submit:hover {
 	background-color: var(--color-lime);
 	color: var(--color-terminal-bg);
