@@ -6,7 +6,7 @@
 :root {
 	--color-white: #ffffff;
 	--color-lime: #00ff00ff;
-	--color-magenta: #ff00ff;
+	--color-magenta: #FF8080;
 	--color-terminal-bg: #1a1a1a;
 	--color-black: #303030;
 	--color-gray-400: rgba(156, 163, 175, 1);
@@ -809,13 +809,34 @@ body.scroll-container {
 		gap: 1.5rem;
 	}
 
+	/* Mobile home section adjustments */
+	.main-content {
+		padding-top: 6rem; /* Reduced from 8rem for mobile */
+	}
+
 	.logo-large {
-		width: 20rem;
-		height: 20rem;
+		width: 18rem; /* Slightly smaller than 20rem */
+		height: 6rem; /* Proportionally smaller height */
+		margin: -0.5rem auto 0.5rem auto; /* Tighter spacing */
 	}
 
 	.heading-primary {
-		font-size: 2rem;
+		font-size: 1.75rem; /* Smaller than 2rem */
+		margin-bottom: -0.5rem; /* Tighter spacing to logo */
+	}
+
+	.subheading {
+		font-size: 0.9rem; /* Smaller font */
+		letter-spacing: 0.1em; /* Less spacing to prevent wrapping */
+		margin: 0.5rem auto 1rem; /* Tighter top margin */
+		white-space: nowrap; /* Prevent line breaks */
+		overflow: hidden; /* Hide overflow if needed */
+		text-overflow: ellipsis; /* Add ... if text is too long */
+	}
+
+	/* Contact section mobile spacing */
+	#contact .heading-primary {
+		margin-bottom: 2.5rem; /* Increased spacing for mobile */
 	}
 
 	/* Services responsive layout */
@@ -866,10 +887,33 @@ body.scroll-container {
 		display: none;
 	}
 
-	.heading-primary {
-		font-size: 1.75rem;
-		margin-bottom: 0.0625rem;
+	/* Extra small mobile adjustments */
+	.main-content {
+		padding-top: 5rem; /* Even less top padding */
 	}
+
+	.logo-large {
+		width: 16rem; /* Further reduced */
+		height: 5rem; /* Maintain proportion */
+		margin: -0.25rem auto 0.25rem auto; /* Very tight spacing */
+	}
+
+	.heading-primary {
+		font-size: 1.5rem; /* Even smaller */
+		margin-bottom: -0.75rem; /* Very tight to logo */
+	}
+
+	.subheading {
+		font-size: 0.8rem; /* Smaller font */
+		letter-spacing: 0.05em; /* Minimal letter spacing */
+		margin: 0.25rem auto 1rem; /* Minimal top margin */
+	}
+
+	/* Contact section mobile spacing */
+	#contact .heading-primary {
+		margin-bottom: 3rem; /* Even more spacing for small mobile */
+	}
+
 	/* Mobile services layout */
 	.services-img {
 		max-width: 300px; /* Increased from 200px for mobile */
