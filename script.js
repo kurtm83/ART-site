@@ -63,3 +63,40 @@ document.addEventListener("DOMContentLoaded", function () {
 	updateActiveNav();
 	window.addEventListener("scroll", updateActiveNav);
 });
+
+// Theme toggle logic
+(function() {
+  var logo = document.querySelector('.logo');
+  var body = document.body;
+  var clickCount = 0;
+  var clickTimer = null;
+
+  function setTheme(theme) {
+    if (theme === 'corporate') {
+      body.classList.add('corporate-theme');
+      localStorage.setItem('siteTheme', 'corporate');
+    } else {
+      body.classList.remove('corporate-theme');
+      localStorage.setItem('siteTheme', 'cypherpunk');
+    }
+  }
+
+  // Load theme on page load
+  var savedTheme = localStorage.getItem('siteTheme');
+  if (savedTheme === 'corporate') {
+    body.classList.add('corporate-theme');
+  }
+
+  logo.addEventListener('click', function() {
+    clickCount++;
+    if (clickTimer) clearTimeout(clickTimer);
+    clickTimer = setTimeout(function() {
+      clickCount = 0;
+    }, 2000);
+    if (clickCount === 5) {
+      var isCorporate = body.classList.contains('corporate-theme');
+      setTheme(isCorporate ? 'cypherpunk' : 'corporate');
+      clickCount = 0;
+    }
+  });
+})();

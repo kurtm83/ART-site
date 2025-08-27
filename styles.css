@@ -10,6 +10,13 @@
 	--color-terminal-bg: #1a1a1a;
 	--color-black: #303030;
 	--color-gray-400: rgba(156, 163, 175, 1);
+	--color-bg: #fff;
+	--color-text: #222;
+	--color-accent: #e74c3c;
+	--color-gray-light: #f5f5f5;
+	--color-gray: #eaeaea;
+	--color-gray-dark: #d3d3d3;
+	--font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
 /* Base styles */
@@ -957,4 +964,67 @@ body.scroll-container {
     color: var(--color-lime);
     text-shadow: 0 0 3px var(--color-lime);
     filter: blur(0.42px);
+}
+
+/* Corporate theme styles */
+.corporate-theme {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-main);
+}
+
+.corporate-theme .navbar {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.corporate-theme .logo {
+  color: var(--color-accent);
+}
+
+.corporate-theme .nav-link {
+  color: var(--color-text);
+}
+
+.corporate-theme .nav-link.active {
+  color: var(--color-accent) !important;
+}
+
+.corporate-theme .main-content {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.corporate-theme .heading-primary {
+  color: var(--color-accent);
+  font-family: var(--font-main);
+}
+
+.corporate-theme .subheading {
+  color: var(--color-text);
+}
+
+.corporate-theme .contact-link,
+.corporate-theme .email-link {
+  color: var(--color-accent);
+}
+
+.corporate-theme .contact-link:hover,
+.corporate-theme .email-link:hover {
+  color: var(--color-text);
+}
+
+.corporate-theme .services-list li::before {
+  color: var(--color-accent);
+}
+
+.corporate-theme .contact-submit {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-bg);
+}
+
+.corporate-theme .contact-submit:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
 }
