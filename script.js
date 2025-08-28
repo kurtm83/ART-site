@@ -62,41 +62,61 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Initialize navigation on load
 	updateActiveNav();
 	window.addEventListener("scroll", updateActiveNav);
+
+	// Debug: force pink color on cypherpunk active nav-link if cypherpunk theme is active
+	function debugForcePinkActiveNav() {
+		if (document.body.classList.contains('cypherpunk-theme')) {
+			var activeLink = document.getElementById('debug-cypherpunk-active');
+			if (activeLink) {
+				activeLink.style.color = '#FF8080';
+				activeLink.style.fontWeight = 'bold';
+				activeLink.style.background = 'none';
+				activeLink.style.textDecoration = 'none';
+				activeLink.style.border = '2px dashed #FF8080';
+				console.log('DEBUG: Forced pink on cypherpunk active nav-link.');
+			}
+		}
+	}
+	debugForcePinkActiveNav();
+	window.addEventListener('scroll', debugForcePinkActiveNav);
+	window.addEventListener('click', debugForcePinkActiveNav);
 });
 
 // Theme toggle logic
-(function() {
-  var logo = document.querySelector('.logo');
-  var body = document.body;
-  var clickCount = 0;
-  var clickTimer = null;
+var logo = document.getElementById('theme-logo');
+var body = document.body;
+var servicesImg = document.querySelector('.services-img');
+function setTheme(theme) {
+	if (theme === 'corporate') {
+		body.classList.add('corporate-theme');
+		localStorage.setItem('siteTheme', 'corporate');
+		logo.src = 'images/corporate/rtLogo-corp.svg';
+		if (servicesImg) servicesImg.src = 'images/corporate/services-corp.png';
+	} else {
+		body.classList.remove('corporate-theme');
+		localStorage.setItem('siteTheme', 'cypherpunk');
+		logo.src = 'images/cypherpunk/rtLogo.svg';
+		if (servicesImg) servicesImg.src = 'images/cypherpunk/services.png';
+		console.log('DEBUG: Cypherpunk theme activated.');
+	}
+}
 
-  function setTheme(theme) {
-    if (theme === 'corporate') {
-      body.classList.add('corporate-theme');
-      localStorage.setItem('siteTheme', 'corporate');
-    } else {
-      body.classList.remove('corporate-theme');
-      localStorage.setItem('siteTheme', 'cypherpunk');
-    }
-  }
+// Always start in corporate theme unless cypherpunk is saved
 
-  // Load theme on page load
-  var savedTheme = localStorage.getItem('siteTheme');
-  if (savedTheme === 'corporate') {
-    body.classList.add('corporate-theme');
-  }
+// On page load, set theme from localStorage or default to corporate
+var savedTheme = localStorage.getItem('siteTheme');
+if (savedTheme === 'cypherpunk') {
+	setTheme('cypherpunk');
+} else {
+	setTheme('corporate');
+}
 
-  logo.addEventListener('click', function() {
-    clickCount++;
-    if (clickTimer) clearTimeout(clickTimer);
-    clickTimer = setTimeout(function() {
-      clickCount = 0;
-    }, 2000);
-    if (clickCount === 5) {
-      var isCorporate = body.classList.contains('corporate-theme');
-      setTheme(isCorporate ? 'cypherpunk' : 'corporate');
-      clickCount = 0;
-    }
-  });
-})();
+var logoClickCount = 0;
+logo.addEventListener('click', function() {
+	logoClickCount++;
+	if (logoClickCount >= 3) {
+		var isCorporate = body.classList.contains('corporate-theme');
+		setTheme(isCorporate ? 'cypherpunk' : 'corporate');
+		logoClickCount = 0;
+	}
+});

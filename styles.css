@@ -1,3 +1,22 @@
+.corporate-theme .navbar .nav-links .nav-link,
+.corporate-theme .navbar .nav-links .nav-link:visited,
+.corporate-theme .navbar .nav-links .nav-link:focus,
+.corporate-theme .navbar .nav-links .nav-link:hover,
+.corporate-theme .navbar .nav-links .nav-link.active {
+	color: var(--color-text) !important;
+}
+/* ...existing code... */
+/* FINAL OVERRIDE: Cypherpunk theme active nav-link always pink */
+/* Cypherpunk theme: all nav-links lime except active, which is pink */
+.cypherpunk-theme .navbar .nav-links .nav-link {
+	color: var(--color-lime) !important;
+}
+.cypherpunk-theme .navbar .nav-links .nav-link.active {
+	color: #FF8080 !important;
+	background: none !important;
+	font-weight: bold !important;
+	text-decoration: none !important;
+}
 /* 
   RHINO.TRAINING STYLES 
   A minimal CSS file for a rhino training themed one-pager
@@ -94,13 +113,13 @@ body.scroll-container {
 
 /* Active navbar item styling */
 .navbar .nav-links .nav-link.active {
-	color: var(--color-white) !important;
+	/* color set by theme */
 	font-weight: bold !important;
 	text-decoration: none !important;
 }
 
 .navbar .nav-links .nav-link.active:hover {
-	color: var(--color-white) !important;
+	/* color set by theme */
 }
 
 /* Main content */
@@ -279,8 +298,8 @@ body.scroll-container {
 }
 
 .lime-text {
-	color: var(--color-lime);
-}
+			color: var(--color-lime);
+	}
 
 .magenta-text {
 	color: var(--color-magenta);
@@ -974,8 +993,16 @@ body.scroll-container {
 }
 
 .corporate-theme .navbar {
-  background: var(--color-bg);
-  border-bottom: 1px solid var(--color-gray);
+	background: var(--color-bg) !important;
+	border-bottom: 1px solid var(--color-gray) !important;
+}
+.corporate-theme .logo {
+	color: var(--color-accent) !important;
+}
+.corporate-theme .navbar .nav-links .nav-link {
+	color: var(--color-text) !important;
+	color: var(--color-text) !important;
+}
 }
 
 .corporate-theme .logo {
@@ -983,48 +1010,214 @@ body.scroll-container {
 }
 
 .corporate-theme .nav-link {
-  color: var(--color-text);
+	color: var(--color-text) !important;
+}
+.corporate-theme .navbar .nav-links .nav-link {
+	color: var(--color-text) !important;
+}
+.corporate-theme {
+	background: var(--color-bg) !important;
+	color: var(--color-text) !important;
+}
 }
 
 .corporate-theme .nav-link.active {
   color: var(--color-accent) !important;
+  background: none !important;
 }
-
-.corporate-theme .main-content {
-  background: var(--color-bg);
-  color: var(--color-text);
-}
-
 .corporate-theme .heading-primary {
-  color: var(--color-accent);
-  font-family: var(--font-main);
+  color: var(--color-accent) !important;
 }
-
-.corporate-theme .subheading {
-  color: var(--color-text);
+.corporate-theme #home .subheading {
+  color: var(--color-text) !important;
 }
-
+.corporate-theme .mcneel-link,
 .corporate-theme .contact-link,
 .corporate-theme .email-link {
-  color: var(--color-accent);
+  color: var(--color-accent) !important;
 }
-
-.corporate-theme .contact-link:hover,
-.corporate-theme .email-link:hover {
-  color: var(--color-text);
+.corporate-theme .about-description {
+  color: var(--color-text) !important;
 }
-
+.corporate-theme #contact .heading-primary {
+  color: var(--color-accent) !important;
+}
+.corporate-theme #contact .email-link {
+  color: var(--color-accent) !important;
+}
+.corporate-theme .services-list li::before {
+  color: var(--color-accent) !important;
+  text-shadow: none !important;
+}
+.corporate-theme .contact-submit {
+  border-color: var(--color-accent) !important;
+  color: var(--color-bg) !important;
+  background: var(--color-accent) !important;
+}
+.corporate-theme .contact-submit:hover {
+  background: var(--color-bg) !important;
+  color: var(--color-accent) !important;
+}
+.corporate-theme .form-input,
+.corporate-theme .form-textarea {
+  background: var(--color-gray-light) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-gray-dark) !important;
+}
+.corporate-theme #contact label {
+  color: #555 !important;
+}
 .corporate-theme .services-list li::before {
   color: var(--color-accent);
+  text-shadow: none;
 }
 
-.corporate-theme .contact-submit {
-  border-color: var(--color-accent);
+.corporate-theme .form-label {
   color: var(--color-accent);
-  background: var(--color-bg);
 }
 
-.corporate-theme .contact-submit:hover {
-  background: var(--color-accent);
-  color: var(--color-bg);
+.corporate-theme .about-description {
+  color: var(--color-text) !important;
+}
+
+.corporate-theme .welcome-heading {
+	color: #555 !important;
+	filter: none !important;
+	text-shadow: none !important;
+	outline: none !important;
+}
+
+/* Cypherpunk theme styles - NAV ONLY */
+.cypherpunk-theme .navbar .nav-links .nav-link {
+	color: var(--color-lime) !important;
+}
+.cypherpunk-theme .navbar .nav-links .nav-link.active {
+	color: #FF8080 !important;
+	background: none !important;
+	font-weight: bold !important;
+	text-decoration: none !important;
+	border: none !important;
+}
+
+/* Cypherpunk theme styles */
+.cypherpunk-theme {
+  background: var(--color-terminal-bg);
+  color: var(--color-white);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.cypherpunk-theme .navbar {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-magenta);
+}
+
+.cypherpunk-theme .logo {
+	color: var(--color-lime);
+}
+.cypherpunk-theme .nav-link.active,
+.cypherpunk-theme .nav-link.active:visited,
+.cypherpunk-theme .nav-link.active:focus,
+.cypherpunk-theme .nav-link.active:hover {
+	color: var(--color-magenta) !important;
+	background: none !important;
+/* Reverting .welcome-heading color to its original value */
+	color: var(--color-lime); /* Assuming the original color is lime */
+	filter: none !important;
+	text-shadow: none !important;
+	outline: none !important;
+/* Cypherpunk theme: highlight active nav-link in pink for all states */
+.cypherpunk-theme .nav-link.active,
+.cypherpunk-theme .nav-link.active:visited,
+.cypherpunk-theme .nav-link.active:focus,
+.cypherpunk-theme .nav-link.active:hover {
+	color: var(--color-magenta) !important;
+	background: none !important;
+	font-weight: bold !important;
+	text-decoration: none !important;
+}
+
+.cypherpunk-theme .nav-link {
+	color: var(--color-magenta) !important;
+}
+
+.cypherpunk-theme .nav-link.active,
+.cypherpunk-theme .nav-link.active:visited,
+.cypherpunk-theme .nav-link.active:focus,
+.cypherpunk-theme .nav-link.active:hover {
+	color: var(--color-magenta) !important;
+	background: none !important;
+}
+
+/* Remove lime from cypherpunk active nav-link */
+.cypherpunk-theme .nav-link.active {
+	}
+/* FINAL OVERRIDE: Cypherpunk theme active nav-link always pink */
+.cypherpunk-theme .navbar .nav-links .nav-link.active,
+.cypherpunk-theme .navbar .nav-links .nav-link.active:visited,
+.cypherpunk-theme .navbar .nav-links .nav-link.active:focus,
+.cypherpunk-theme .navbar .nav-links .nav-link.active:hover {
+	color: #FF8080 !important;
+	background: none !important;
+	font-weight: bold !important;
+	text-decoration: none !important;
+}
+.cypherpunk-theme .heading-primary {
+  color: var(--color-lime) !important;
+}
+.cypherpunk-theme #home .subheading {
+  color: var(--color-lime) !important;
+}
+.cypherpunk-theme .mcneel-link,
+.cypherpunk-theme .contact-link,
+.cypherpunk-theme .email-link {
+  color: var(--color-lime) !important;
+}
+.cypherpunk-theme .about-description {
+  color: var(--color-white) !important;
+}
+.cypherpunk-theme #contact .heading-primary {
+  color: var(--color-lime) !important;
+}
+.cypherpunk-theme #contact .email-link {
+  color: var(--color-lime) !important;
+}
+.cypherpunk-theme .services-list li::before {
+  color: var(--color-lime) !important;
+  text-shadow: none !important;
+}
+.cypherpunk-theme .contact-submit {
+  border-color: var(--color-lime) !important;
+  color: var(--color-terminal-bg) !important;
+  background: var(--color-lime) !important;
+}
+.cypherpunk-theme .contact-submit:hover {
+  background: var(--color-lime) !important;
+  color: var(--color-terminal-bg) !important;
+}
+.cypherpunk-theme .form-input,
+.cypherpunk-theme .form-textarea {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--color-white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+.cypherpunk-theme #contact label {
+  color: var(--color-white) !important;
+}
+.cypherpunk-theme .services-list li::before {
+  color: var(--color-lime);
+  text-shadow: none;
+}
+
+.cypherpunk-theme .form-label {
+	color: var(--color-lime);
+}
+
+.cypherpunk-theme .about-description {
+  color: var(--color-white) !important;
+}
+
+.cypherpunk-theme .welcome-heading {
+	color: var(--color-magenta) !important;
+  filter: blur(1px);
 }

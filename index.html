@@ -21,7 +21,7 @@
 				<span class="logo">Rhino.Training</span>
 				<div class="spacer"></div>
 				<ul class="nav-links">
-					<li><a href="#home" class="nav-link active">Home</a></li>
+					<li><a href="#home" class="nav-link active" id="debug-cypherpunk-active">Home</a></li>
 					<li><a href="#about" class="nav-link">About</a></li>
 					<li><a href="#services" class="nav-link">Services</a></li>
 					<li><a href="#contact" class="nav-link">Contact</a></li>
@@ -35,10 +35,9 @@
 			<section id="home" class="section">
 				<div class="section-content">
 					<div class="welcome-container">
-						<h1 class="heading-primary"><em class="blur-text">Welcome to</em></h1>
-						<div class="logo-container">
-							<img src="images/rtLogo.svg" alt="Rhino Training Logo" class="logo-large" />
-						</div>
+						<h1 class="heading-primary"><em class="welcome-heading blur-text">Welcome to</em></h1>
+						<!-- Logo: theme-dependent -->
+						<img id="theme-logo" src="images/cypherpunk/rtLogo.svg" alt="Rhino Training Logo" class="logo-large" />
 						<p class="subheading">Rhino3D Consulting - Training - Support</p>
 					</div>
 				</div>
@@ -48,7 +47,7 @@
 		<section id="about" class="section">
 			<div class="section-content about-container">
 				<div class="about-animation">
-					<img src="images/rhinoCircles_30.webp" alt="Rhino circles animation" class="rhino-animation" loading="lazy" />
+					<img src="images/cypherpunk/rhinoCircles_30.webp" alt="Rhino circles animation" class="rhino-animation" loading="lazy" />
 				</div>
 				<div class="about-content">
 					<h1 class="heading-primary">About</h1>
@@ -66,7 +65,7 @@
 			<section id="services" class="section">
 				<div class="section-content centered services-container">
 					<div class="services-image">
-						<img src="images/services.png" alt="Services" class="services-img" />
+						<img src="images/cypherpunk/services.png" alt="Services" class="services-img" />
 					</div>
 					<div class="services-text">
 						<ul class="services-list glow-arrow">
@@ -111,7 +110,7 @@
 									id="email"
 									name="email"
 									class="form-input"
-									placeholder="your.email@example.com"
+									placeholder="email@example.com"
 									required
 								/>
 							</div>
