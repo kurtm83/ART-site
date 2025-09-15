@@ -1221,3 +1221,328 @@ body.scroll-container {
 	color: var(--color-magenta) !important;
   filter: blur(1px);
 }
+
+/* Carousel Styles */
+.carousel-container {
+	max-width: 900px;
+	margin: 4rem auto;
+	padding: 0 1rem;
+	text-align: center;
+}
+
+.carousel {
+	position: relative;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-track {
+	display: flex;
+	transition: transform 0.3s ease;
+}
+
+.carousel-slide {
+	min-width: 100%;
+	position: relative;
+	display: none;
+}
+
+.carousel-slide.active {
+	display: block;
+}
+
+.carousel-image {
+	width: 100%;
+	height: 450px;
+	object-fit: cover;
+	display: block;
+}
+
+.carousel-caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+	color: white;
+	padding: 2rem 1.5rem 1rem;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+.carousel-btn {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	border: none;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	font-size: 1.2rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	z-index: 2;
+}
+
+.carousel-btn:hover {
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-btn-prev {
+	left: 1rem;
+}
+
+.carousel-btn-next {
+	right: 1rem;
+}
+
+.carousel-dots {
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 1rem;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.carousel-dot {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	border: none;
+	background: rgba(255, 255, 255, 0.4);
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.carousel-dot.active {
+	background: var(--color-lime);
+}
+
+/* Calendar Styles */
+.calendar-container {
+	max-width: 500px;
+	margin: 2rem auto;
+	padding: 0 1rem;
+}
+
+.calendar-title {
+	text-align: center;
+	color: var(--color-white);
+	font-size: 1.8rem;
+	margin-bottom: 1.5rem;
+	font-weight: 500;
+}
+
+.calendar {
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+	background: var(--color-lime);
+	color: var(--color-terminal-bg);
+	padding: 1rem;
+	text-align: center;
+}
+
+.calendar-month {
+	margin: 0;
+	font-size: 1.3rem;
+	font-weight: 500;
+}
+
+.calendar-grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 1px;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.calendar-day-header {
+	background: rgba(255, 255, 255, 0.1);
+	color: var(--color-white);
+	padding: 0.75rem 0.5rem;
+	text-align: center;
+	font-weight: 500;
+	font-size: 0.9rem;
+}
+
+.calendar-day {
+	background: rgba(255, 255, 255, 0.05);
+	color: var(--color-white);
+	padding: 1rem 0.5rem;
+	text-align: center;
+	min-height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	cursor: default;
+}
+
+.calendar-day.empty {
+	background: rgba(255, 255, 255, 0.02);
+	color: rgba(255, 255, 255, 0.3);
+}
+
+.calendar-day.training-day {
+	background: var(--color-lime);
+	color: var(--color-terminal-bg);
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.calendar-day.training-day:hover {
+	transform: scale(1.05);
+	box-shadow: 0 2px 10px rgba(0, 255, 0, 0.3);
+}
+
+.calendar-day.training-day::after {
+	content: attr(data-training);
+	position: absolute;
+	bottom: 2px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 0.7rem;
+	font-weight: 400;
+	white-space: nowrap;
+	opacity: 0.9;
+}
+
+.calendar-legend {
+	padding: 1rem;
+	background: rgba(255, 255, 255, 0.05);
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend-item {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: var(--color-white);
+	font-size: 0.9rem;
+}
+
+.legend-color {
+	width: 16px;
+	height: 16px;
+	border-radius: 4px;
+	background: var(--color-lime);
+}
+
+/* Theme-specific styles */
+.corporate-theme .carousel {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.corporate-theme .carousel-dots {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.corporate-theme .carousel-dot {
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.corporate-theme .carousel-dot.active {
+	background: var(--color-accent);
+}
+
+.corporate-theme .calendar {
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.corporate-theme .calendar-title {
+	color: var(--color-text);
+}
+
+.corporate-theme .calendar-header {
+	background: var(--color-accent);
+	color: white;
+}
+
+.corporate-theme .calendar-grid {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.corporate-theme .calendar-day-header {
+	background: var(--color-accent);
+	color: white;
+	font-weight: 600;
+}
+
+.corporate-theme .calendar-day {
+	background: white;
+	color: var(--color-text);
+	border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.corporate-theme .calendar-day.empty {
+	background: rgba(0, 0, 0, 0.02);
+	color: rgba(0, 0, 0, 0.3);
+}
+
+.corporate-theme .calendar-day.training-day {
+	background: var(--color-accent);
+	color: white;
+}
+
+.corporate-theme .calendar-day.training-day:hover {
+	box-shadow: 0 2px 10px rgba(231, 76, 60, 0.3);
+}
+
+.corporate-theme .calendar-legend {
+	background: white;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.corporate-theme .legend-item {
+	color: var(--color-text);
+}
+
+.corporate-theme .legend-color {
+	background: var(--color-accent);
+}
+
+.cypherpunk-theme .carousel-dot.active {
+	background: var(--color-lime);
+}
+
+.cypherpunk-theme .calendar-day.training-day {
+	background: var(--color-lime);
+	color: var(--color-terminal-bg);
+}
+
+.cypherpunk-theme .calendar-header {
+	background: var(--color-lime);
+	color: var(--color-terminal-bg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.carousel-image {
+		height: 300px;
+	}
+	
+	.carousel-btn {
+		width: 40px;
+		height: 40px;
+		font-size: 1rem;
+	}
+	
+	.calendar-day {
+		min-height: 50px;
+		padding: 0.5rem 0.25rem;
+	}
+	
+	.calendar-day.training-day::after {
+		font-size: 0.6rem;
+	}
+}

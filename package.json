@@ -1,0 +1,15 @@
+{
+  "name": "art-site",
+  "version": "1.0.0",
+  "description": "ART Site with dynamic carousel",
+  "scripts": {
+    "update-carousel": "node update-carousel.js",
+    "dev": "live-server --port=5500"
+  },
+  "keywords": ["art", "carousel", "website"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

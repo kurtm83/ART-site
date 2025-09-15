@@ -120,3 +120,105 @@ logo.addEventListener('click', function() {
 		logoClickCount = 0;
 	}
 });
+
+// Dynamic Carousel functionality
+let currentSlide = 0;
+let slides = [];
+
+async function loadCarouselImages() {
+    const carouselTrack = document.getElementById('carousel-track');
+
+    if (!carouselTrack) return;
+
+    // Add CSS to ensure only active slides are visible
+    const style = document.createElement('style');
+    style.textContent = `
+        .carousel-slide {
+            display: none;
+        }
+        .carousel-slide.active {
+            display: block !important;
+        }
+    `;
+    document.head.appendChild(style);
+
+    console.log('🔄 Loading carousel images from JSON list...');
+
+    try {
+        // Load the JSON file with all image filenames
+        const response = await fetch('carousel-images.json');
+        const imageData = await response.json();
+        const imageList = imageData.images || [];
+
+        if (imageList.length === 0) {
+            carouselTrack.innerHTML = '<div class="carousel-slide active">No images found in carousel-images.json</div>';
+            console.log('❌ No images listed in carousel-images.json');
+            return;
+        }
+
+        console.log(`📂 Loading ${imageList.length} images from JSON list...`);
+
+        // Clear existing content
+        carouselTrack.innerHTML = '';
+
+        let loadedCount = 0;
+
+        // Load each image from the JSON list
+        imageList.forEach((imageName, index) => {
+            const img = new Image();
+            img.onload = () => {
+                loadedCount++;
+                console.log(`✅ Loaded: ${imageName}`);
+
+                // Create slide
+                const slide = document.createElement('div');
+                slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+
+                const imgElement = document.createElement('img');
+                imgElement.src = `images/carousel/${imageName}`;
+                imgElement.alt = `Image ${index + 1}`;
+                imgElement.className = 'carousel-image';
+
+                slide.appendChild(imgElement);
+                carouselTrack.appendChild(slide);
+
+                // Start cycling when all images are loaded
+                if (loadedCount === imageList.length) {
+                    slides = document.querySelectorAll('.carousel-slide');
+                    console.log(`🎉 Carousel ready with ${slides.length} images from JSON!`);
+                    startCarousel();
+                }
+            };
+
+            img.onerror = () => {
+                console.log(`❌ Failed to load: ${imageName}`);
+            };
+
+            img.src = `images/carousel/${imageName}`;
+        });
+
+    } catch (error) {
+        console.log('❌ Error loading carousel-images.json:', error);
+        carouselTrack.innerHTML = '<div class="carousel-slide active">Error loading image list</div>';
+    }
+}
+
+function startCarousel() {
+    setInterval(() => {
+        // Hide current slide
+        slides[currentSlide].classList.remove('active');
+        slides[currentSlide].style.display = 'none';
+
+        // Move to next slide
+        currentSlide = (currentSlide + 1) % slides.length;
+
+        // Show next slide
+        slides[currentSlide].classList.add('active');
+        slides[currentSlide].style.display = 'block';
+    }, 5000); // Change every 5 seconds
+}
+
+// Initialize carousel when page loads
+document.addEventListener('DOMContentLoaded', function() {
+	loadCarouselImages();
+});
