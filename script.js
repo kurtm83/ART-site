@@ -134,10 +134,12 @@ async function loadCarouselImages() {
     const style = document.createElement('style');
     style.textContent = `
         .carousel-slide {
-            display: none;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
         }
         .carousel-slide.active {
-            display: block !important;
+            opacity: 1 !important;
         }
     `;
     document.head.appendChild(style);
@@ -170,14 +172,38 @@ async function loadCarouselImages() {
                 loadedCount++;
                 console.log(`✅ Loaded: ${imageName}`);
 
-                // Create slide
+                // Create slide with proper absolute positioning
                 const slide = document.createElement('div');
                 slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+                slide.style.cssText = `
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: ${index === 0 ? '1' : '0'};
+                    visibility: ${index === 0 ? 'visible' : 'hidden'};
+                    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+                    z-index: ${index === 0 ? '2' : '1'};
+                `;
 
                 const imgElement = document.createElement('img');
                 imgElement.src = `images/carousel/${imageName}`;
                 imgElement.alt = `Image ${index + 1}`;
                 imgElement.className = 'carousel-image';
+                imgElement.style.cssText = `
+                    max-width: 100%;
+                    max-height: 100%;
+                    width: auto;
+                    height: auto;
+                    object-fit: contain;
+                    display: block;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+                `;
 
                 slide.appendChild(imgElement);
                 carouselTrack.appendChild(slide);
@@ -205,16 +231,21 @@ async function loadCarouselImages() {
 
 function startCarousel() {
     setInterval(() => {
+        // Get all slides
+        const slides = document.querySelectorAll('.carousel-slide');
+
         // Hide current slide
-        slides[currentSlide].classList.remove('active');
-        slides[currentSlide].style.display = 'none';
+        slides[currentSlide].style.opacity = '0';
+        slides[currentSlide].style.visibility = 'hidden';
+        slides[currentSlide].style.zIndex = '1';
 
         // Move to next slide
         currentSlide = (currentSlide + 1) % slides.length;
 
         // Show next slide
-        slides[currentSlide].classList.add('active');
-        slides[currentSlide].style.display = 'block';
+        slides[currentSlide].style.opacity = '1';
+        slides[currentSlide].style.visibility = 'visible';
+        slides[currentSlide].style.zIndex = '2';
     }, 5000); // Change every 5 seconds
 }
 

@@ -1228,6 +1228,11 @@ body.scroll-container {
 	margin: 4rem auto;
 	padding: 0 1rem;
 	text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    padding: 2rem 0;
 }
 
 .carousel {
@@ -1241,6 +1246,9 @@ body.scroll-container {
 .carousel-track {
 	display: flex;
 	transition: transform 0.3s ease;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
 }
 
 .carousel-slide {
@@ -1258,6 +1266,9 @@ body.scroll-container {
 	height: 450px;
 	object-fit: cover;
 	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: 0 auto;
 }
 
 .carousel-caption {
@@ -1545,4 +1556,115 @@ body.scroll-container {
 	.calendar-day.training-day::after {
 		font-size: 0.6rem;
 	}
+}
+
+/* Force carousel to bottom and center it */
+#carousel-section {
+    order: 999; /* Move to end */
+    text-align: center;
+}
+
+.carousel-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 60vh !important;
+    padding: 3rem 0 !important;
+    width: 100% !important;
+}
+
+#carousel-track {
+    max-width: 900px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+
+.carousel-image {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+/* Carousel centering and positioning */
+#carousel-section {
+    padding: 4rem 0;
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Changed from center to flex-start */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem 2rem; /* Increased bottom padding */
+    gap: 3rem; /* Increased gap between title and carousel */
+}
+
+.carousel-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
+    width: 100%;
+    flex-shrink: 0; /* Prevent title from shrinking */
+    z-index: 10; /* Ensure title stays above images */
+    position: relative;
+}
+
+#carousel-track {
+    width: 100%;
+    max-width: 900px;
+    height: 600px; /* Increased from 500px to 600px */
+    margin: 0 auto;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05); /* Subtle background */
+    flex-shrink: 0; /* Prevent carousel from shrinking */
+}
+
+.carousel-slide {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out !important;
+    z-index: 1 !important;
+}
+
+.carousel-slide.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 2 !important;
+}
+
+.carousel-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Maintains aspect ratio while fitting */
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
