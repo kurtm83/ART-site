@@ -87,17 +87,95 @@ var logo = document.getElementById('theme-logo');
 var body = document.body;
 var servicesImg = document.querySelector('.services-img');
 function setTheme(theme) {
+	console.log('Setting theme to:', theme);
 	if (theme === 'corporate') {
 		body.classList.add('corporate-theme');
 		localStorage.setItem('siteTheme', 'corporate');
 		logo.src = 'images/corporate/rtLogo-corp.svg';
 		if (servicesImg) servicesImg.src = 'images/corporate/services-corp.png';
+		console.log('Corporate theme applied. Body classes:', body.className);
+		
+		// FORCE calendar styling for corporate theme
+		forceCorporateCalendarStyles();
 	} else {
 		body.classList.remove('corporate-theme');
 		localStorage.setItem('siteTheme', 'cypherpunk');
 		logo.src = 'images/cypherpunk/rtLogo.svg';
 		if (servicesImg) servicesImg.src = 'images/cypherpunk/services.png';
-		console.log('DEBUG: Cypherpunk theme activated.');
+		console.log('Cypherpunk theme applied. Body classes:', body.className);
+		
+		// Remove forced styles for cypherpunk theme
+		removeForcedCalendarStyles();
+	}
+}
+
+function forceCorporateCalendarStyles() {
+	// Force calendar headers to be dark text
+	const headers = document.querySelectorAll('.calendar-day-header');
+	headers.forEach(header => {
+		header.style.color = '#222 !important';
+		header.style.background = '#f5f5f5 !important';
+	});
+	
+	// Force calendar days to be dark text on white background
+	const days = document.querySelectorAll('.calendar-day');
+	days.forEach(day => {
+		// Only style non-event days, preserve event styling
+		if (!day.classList.contains('has-event')) {
+			day.style.color = '#222 !important';
+			day.style.background = '#fff !important';
+			day.style.border = '1px solid rgba(0,0,0,0.1) !important';
+		}
+	});
+	
+	// Force calendar title to be dark
+	const title = document.querySelector('.calendar-title');
+	if (title) {
+		title.style.color = '#222 !important';
+	}
+	
+	// Force calendar container to have white background
+	const container = document.querySelector('.calendar');
+	if (container) {
+		container.style.background = 'rgba(255,255,255,0.95) !important';
+		container.style.border = '1px solid rgba(0,0,0,0.1) !important';
+	}
+	
+	console.log('Forced corporate calendar styles applied');
+	
+	// Re-enhance event styling after forced styling
+	if (typeof enhanceEventStyling === 'function') {
+		setTimeout(enhanceEventStyling, 50);
+	}
+}
+
+function removeForcedCalendarStyles() {
+	// Remove inline styles to restore cypherpunk theme
+	const headers = document.querySelectorAll('.calendar-day-header');
+	headers.forEach(header => {
+		header.style.color = '';
+		header.style.background = '';
+	});
+	
+	const days = document.querySelectorAll('.calendar-day');
+	days.forEach(day => {
+		// Only remove styles from non-event days, preserve event styling
+		if (!day.classList.contains('has-event')) {
+			day.style.color = '';
+			day.style.background = '';
+			day.style.border = '';
+		}
+	});
+	
+	const title = document.querySelector('.calendar-title');
+	if (title) {
+		title.style.color = '';
+	}
+	
+	const container = document.querySelector('.calendar');
+	if (container) {
+		container.style.background = '';
+		container.style.border = '';
 	}
 }
 

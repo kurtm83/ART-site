@@ -356,7 +356,7 @@ body.scroll-container {
 
 /* Custom Calendar Styles */
 .calendar-container {
-	background-color: var(--color-terminal-bg);
+	background-color: transparent;
 	border: 1px solid var(--color-magenta);
 	border-radius: 0.375rem;
 	padding: 1.5rem;
@@ -382,8 +382,26 @@ body.scroll-container {
 	display: flex;
 }
 
+/* Event Modal Styles */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	justify-content: center;
+	align-items: center;
+}
+
+.modal.active {
+	display: flex;
+}
+
 .modal-content {
-	background-color: var(--color-terminal-bg);
+	background-color: transparent;
 	border: 2px solid var(--color-magenta);
 	border-radius: 0.5rem;
 	padding: 2rem;
@@ -407,8 +425,83 @@ body.scroll-container {
 	transition: background-color 0.3s;
 }
 
-.modal-close:hover {
+.close-modal {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	background: none;
+	border: none;
+	color: var(--color-lime);
+	font-size: 1.5rem;
+	cursor: pointer;
+	padding: 0.5rem;
+	border-radius: 0.25rem;
+	transition: background-color 0.3s;
+}
+
+.modal-close:hover,
+.close-modal:hover {
 	background-color: rgba(255, 0, 255, 0.1);
+}
+
+/* Event Modal Content Styles */
+.event-details {
+	margin-bottom: 2rem;
+	padding: 1.5rem;
+	border: 1px solid var(--color-magenta);
+	border-radius: 0.5rem;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.event-details h3 {
+	color: var(--color-lime);
+	margin-bottom: 1rem;
+	border-bottom: 1px solid var(--color-magenta);
+	padding-bottom: 0.5rem;
+}
+
+.event-info p {
+	margin: 0.5rem 0;
+	color: var(--color-text);
+}
+
+.event-info strong {
+	color: var(--color-lime);
+}
+
+.event-description {
+	margin-top: 1rem;
+	font-style: italic;
+	color: var(--color-text-muted);
+}
+
+.event-links {
+	margin-top: 1rem;
+}
+
+.event-links a {
+	color: var(--color-lime);
+	text-decoration: none;
+	margin-right: 1rem;
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--color-lime);
+	border-radius: 0.25rem;
+	transition: all 0.3s;
+}
+
+.event-links a:hover {
+	background-color: var(--color-lime);
+	color: var(--color-bg);
+}
+
+/* Event topics list styling */
+.event-topics ul {
+	margin-left: 1.5rem;
+	margin-top: 0.5rem;
+}
+
+.event-topics ul li {
+	margin-bottom: 0.25rem;
 }
 
 .calendar-header {
@@ -422,8 +515,8 @@ body.scroll-container {
 
 .calendar-nav {
 	background: none;
-	border: 1px solid var(--color-lime);
-	color: var(--color-lime);
+	border: 1px solid #e74c3c;
+	color: #e74c3c;
 	padding: 0.5rem 1rem;
 	border-radius: 0.25rem;
 	cursor: pointer;
@@ -431,12 +524,12 @@ body.scroll-container {
 }
 
 .calendar-nav:hover {
-	background-color: var(--color-lime);
-	color: var(--color-terminal-bg);
+	background-color: #e74c3c;
+	color: #fff;
 }
 
 .calendar-title {
-	color: var(--color-white);
+	color: #222;
 	font-size: 1.25rem;
 	font-weight: bold;
 }
@@ -451,7 +544,7 @@ body.scroll-container {
 .calendar-day-header {
 	text-align: center;
 	padding: 0.5rem;
-	color: var(--color-lime);
+	color: #e74c3c;
 	font-weight: bold;
 	font-size: 0.875rem;
 }
@@ -465,13 +558,13 @@ body.scroll-container {
 	border-radius: 0.25rem;
 	cursor: pointer;
 	transition: all 0.3s;
-	color: var(--color-white);
+	color: #222;
 	font-size: 0.875rem;
 }
 
 .calendar-day:hover {
-	border-color: var(--color-lime);
-	background-color: rgba(57, 255, 20, 0.1);
+	border-color: #e74c3c;
+	background-color: rgba(231, 76, 60, 0.1);
 }
 
 .calendar-day.available {
@@ -481,7 +574,7 @@ body.scroll-container {
 
 .calendar-day.available:hover {
 	background-color: rgba(255, 0, 255, 0.2);
-	border-color: var(--color-lime);
+	border-color: #e74c3c;
 }
 
 .calendar-day.unavailable {
@@ -491,9 +584,9 @@ body.scroll-container {
 
 /* NEW: Loading state for dates with pending availability data */
 .calendar-day.loading {
-	border-color: var(--color-lime);
-	background-color: rgba(57, 255, 20, 0.05);
-	color: var(--color-lime);
+	border-color: #e74c3c;
+	background-color: rgba(231, 76, 60, 0.05);
+	color: #e74c3c;
 	cursor: wait;
 	animation: pulse 1.5s ease-in-out infinite;
 }
@@ -587,7 +680,7 @@ body.scroll-container {
 	padding: 0.75rem;
 	border: 1px solid var(--color-magenta);
 	border-radius: 0.25rem;
-	background-color: var(--color-terminal-bg);
+	background-color: transparent;
 	color: var(--color-white);
 	font-family: inherit;
 }
@@ -629,7 +722,7 @@ body.scroll-container {
 	padding: 0.5rem;
 	border: 1px solid var(--color-magenta);
 	border-radius: 0.25rem;
-	background-color: var(--color-terminal-bg);
+	background-color: transparent;
 	color: var(--color-white);
 }
 
@@ -1001,8 +1094,6 @@ body.scroll-container {
 }
 .corporate-theme .navbar .nav-links .nav-link {
 	color: var(--color-text) !important;
-	color: var(--color-text) !important;
-}
 }
 
 .corporate-theme .logo {
@@ -1018,7 +1109,6 @@ body.scroll-container {
 .corporate-theme {
 	background: var(--color-bg) !important;
 	color: var(--color-text) !important;
-}
 }
 
 .corporate-theme .nav-link.active {
@@ -1149,9 +1239,7 @@ body.scroll-container {
 	background: none !important;
 }
 
-/* Remove lime from cypherpunk active nav-link */
-.cypherpunk-theme .nav-link.active {
-	}
+/* Remove lime from cypherpunk active nav-link - handled by FINAL OVERRIDE below */
 /* FINAL OVERRIDE: Cypherpunk theme active nav-link always pink */
 .cypherpunk-theme .navbar .nav-links .nav-link.active,
 .cypherpunk-theme .navbar .nav-links .nav-link.active:visited,
@@ -1333,121 +1421,6 @@ body.scroll-container {
 	background: var(--color-lime);
 }
 
-/* Calendar Styles */
-.calendar-container {
-	max-width: 500px;
-	margin: 2rem auto;
-	padding: 0 1rem;
-}
-
-.calendar-title {
-	text-align: center;
-	color: var(--color-white);
-	font-size: 1.8rem;
-	margin-bottom: 1.5rem;
-	font-weight: 500;
-}
-
-.calendar {
-	background: rgba(255, 255, 255, 0.1);
-	border-radius: 12px;
-	overflow: hidden;
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.calendar-header {
-	background: var(--color-lime);
-	color: var(--color-terminal-bg);
-	padding: 1rem;
-	text-align: center;
-}
-
-.calendar-month {
-	margin: 0;
-	font-size: 1.3rem;
-	font-weight: 500;
-}
-
-.calendar-grid {
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	gap: 1px;
-	background: rgba(255, 255, 255, 0.2);
-}
-
-.calendar-day-header {
-	background: rgba(255, 255, 255, 0.1);
-	color: var(--color-white);
-	padding: 0.75rem 0.5rem;
-	text-align: center;
-	font-weight: 500;
-	font-size: 0.9rem;
-}
-
-.calendar-day {
-	background: rgba(255, 255, 255, 0.05);
-	color: var(--color-white);
-	padding: 1rem 0.5rem;
-	text-align: center;
-	min-height: 60px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	cursor: default;
-}
-
-.calendar-day.empty {
-	background: rgba(255, 255, 255, 0.02);
-	color: rgba(255, 255, 255, 0.3);
-}
-
-.calendar-day.training-day {
-	background: var(--color-lime);
-	color: var(--color-terminal-bg);
-	font-weight: 600;
-	cursor: pointer;
-	transition: all 0.3s ease;
-}
-
-.calendar-day.training-day:hover {
-	transform: scale(1.05);
-	box-shadow: 0 2px 10px rgba(0, 255, 0, 0.3);
-}
-
-.calendar-day.training-day::after {
-	content: attr(data-training);
-	position: absolute;
-	bottom: 2px;
-	left: 50%;
-	transform: translateX(-50%);
-	font-size: 0.7rem;
-	font-weight: 400;
-	white-space: nowrap;
-	opacity: 0.9;
-}
-
-.calendar-legend {
-	padding: 1rem;
-	background: rgba(255, 255, 255, 0.05);
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.legend-item {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	color: var(--color-white);
-	font-size: 0.9rem;
-}
-
-.legend-color {
-	width: 16px;
-	height: 16px;
-	border-radius: 4px;
-	background: var(--color-lime);
-}
-
 /* Theme-specific styles */
 .corporate-theme .carousel {
 	background: rgba(0, 0, 0, 0.05);
@@ -1520,6 +1493,481 @@ body.scroll-container {
 
 .corporate-theme .legend-color {
 	background: var(--color-accent);
+}
+
+/* Corporate theme calendar modal and interactive elements */
+.corporate-theme .calendar-container {
+	border: 1px solid var(--color-gray-dark) !important;
+}
+
+.corporate-theme .calendar-modal {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.corporate-theme .modal-content {
+	border: 2px solid var(--color-accent) !important;
+	background-color: white !important;
+	color: #333 !important;
+	max-height: 80vh !important;
+	overflow-y: auto !important;
+}
+
+.corporate-theme .modal-close,
+.corporate-theme .close-modal {
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .modal-close:hover,
+.corporate-theme .close-modal:hover {
+	background-color: rgba(231, 76, 60, 0.1) !important;
+}
+
+/* Corporate theme event modal content */
+.corporate-theme .event-details {
+	border: 1px solid #ddd !important;
+	background-color: #f9f9f9 !important;
+	color: #333 !important;
+}
+
+.corporate-theme .event-details h3 {
+	color: var(--color-accent) !important;
+	border-bottom: 1px solid #ddd !important;
+}
+
+.corporate-theme .event-info p {
+	color: #333 !important;
+}
+
+.corporate-theme .event-info strong {
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .event-description {
+	color: #666 !important;
+}
+
+.corporate-theme .event-links a {
+	color: var(--color-accent) !important;
+	border: 1px solid var(--color-accent) !important;
+}
+
+.corporate-theme .event-links a:hover {
+	background-color: var(--color-accent) !important;
+	color: white !important;
+}
+
+.corporate-theme .calendar-header {
+	border-bottom: 1px solid var(--color-gray-dark) !important;
+}
+
+.corporate-theme .calendar-nav {
+	border: 1px solid var(--color-accent) !important;
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .calendar-nav:hover {
+	background-color: var(--color-accent) !important;
+	color: var(--color-bg) !important;
+}
+
+.corporate-theme .calendar-title {
+	color: var(--color-text) !important;
+}
+
+/* Higher specificity overrides for calendar elements */
+.corporate-theme .calendar-grid .calendar-day-header {
+	color: var(--color-text) !important;
+}
+
+.corporate-theme .calendar-grid .calendar-day {
+	color: var(--color-text) !important;
+}
+
+.corporate-theme .calendar-grid .calendar-day:hover {
+	border-color: var(--color-accent) !important;
+	background-color: rgba(231, 76, 60, 0.1) !important;
+}
+
+.corporate-theme .calendar-grid .calendar-day.available {
+	border-color: var(--color-accent) !important;
+	background-color: rgba(231, 76, 60, 0.1) !important;
+}
+
+.corporate-theme .calendar-grid .calendar-day.available:hover {
+	background-color: rgba(231, 76, 60, 0.2) !important;
+	border-color: var(--color-accent) !important;
+}
+
+.corporate-theme .calendar-grid .calendar-day.loading {
+	border-color: var(--color-accent) !important;
+	background-color: rgba(231, 76, 60, 0.05) !important;
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .calendar-grid .calendar-day.selected {
+	background-color: var(--color-accent) !important;
+	color: var(--color-bg) !important;
+	border-color: var(--color-accent) !important;
+}
+
+/* Override time slots and other elements */
+.corporate-theme .time-slots .time-slots-title {
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .time-slots .time-slot {
+	border: 1px solid var(--color-accent) !important;
+	color: var(--color-text) !important;
+}
+
+.corporate-theme .time-slots .time-slot:hover {
+	background-color: rgba(231, 76, 60, 0.2) !important;
+	border-color: var(--color-accent) !important;
+}
+
+.corporate-theme .time-slots .time-slot.selected {
+	background-color: var(--color-accent) !important;
+	color: var(--color-bg) !important;
+	border-color: var(--color-accent) !important;
+}
+
+.corporate-theme .calendar-trigger {
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .calendar-trigger .calendar-icon {
+	color: var(--color-accent) !important;
+	stroke: var(--color-accent) !important;
+}
+
+.corporate-theme .calendar-trigger:hover {
+	background-color: var(--color-accent) !important;
+	color: var(--color-bg) !important;
+}
+
+.corporate-theme .calendar-trigger:hover .calendar-icon {
+	color: var(--color-bg) !important;
+	stroke: var(--color-bg) !important;
+}
+
+/* Corporate theme booking form elements */
+.corporate-theme .booking-form {
+	border-top: 1px solid var(--color-gray-dark) !important;
+}
+
+.corporate-theme .form-label {
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .guests-section {
+	border: 1px solid var(--color-gray-dark) !important;
+}
+
+.corporate-theme .guests-title {
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .btn {
+	border: 1px solid var(--color-accent) !important;
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .btn:hover {
+	background-color: var(--color-accent) !important;
+	color: var(--color-bg) !important;
+}
+
+.corporate-theme .btn-secondary {
+	border-color: var(--color-gray-dark) !important;
+	color: var(--color-text) !important;
+}
+
+.corporate-theme .btn-secondary:hover {
+	background-color: var(--color-gray-dark) !important;
+	color: var(--color-bg) !important;
+}
+
+.corporate-theme .success-message {
+	color: var(--color-accent) !important;
+}
+
+/* Additional corporate theme calendar overrides */
+.corporate-theme .time-slots-title {
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .form-label {
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .btn {
+	border: 1px solid var(--color-accent) !important;
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .btn:hover {
+	background-color: var(--color-accent) !important;
+	color: var(--color-bg) !important;
+}
+
+.corporate-theme .calendar-trigger {
+	color: var(--color-accent) !important;
+}
+
+/* FORCE CORPORATE THEME CALENDAR STYLES - OVERRIDE CSS VARIABLES */
+body.corporate-theme {
+	--color-lime: #e74c3c !important;
+	--color-white: #222 !important;
+	--color-terminal-bg: #fff !important;
+	--color-magenta: #e74c3c !important;
+}
+
+/* FORCE CORPORATE THEME CALENDAR STYLES - MAXIMUM OVERRIDE POWER */
+body.corporate-theme .calendar-day-header,
+body.corporate-theme .calendar-grid .calendar-day-header {
+	color: #222 !important;
+	background: #f5f5f5 !important;
+}
+
+body.corporate-theme .calendar-day,
+body.corporate-theme .calendar-grid .calendar-day {
+	color: #222 !important;
+	background: #fff !important;
+	border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+body.corporate-theme .calendar-day:hover,
+body.corporate-theme .calendar-grid .calendar-day:hover {
+	border-color: #e74c3c !important;
+	background-color: rgba(231, 76, 60, 0.1) !important;
+	color: #222 !important;
+}
+
+body.corporate-theme .calendar-day.available,
+body.corporate-theme .calendar-grid .calendar-day.available {
+	border-color: #e74c3c !important;
+	background-color: rgba(231, 76, 60, 0.1) !important;
+	color: #222 !important;
+}
+
+body.corporate-theme .modal-content {
+	background-color: #fff !important;
+	border: 2px solid #e74c3c !important;
+	color: #333 !important;
+	max-height: 80vh !important;
+	overflow-y: auto !important;
+}
+
+/* Corporate theme body event modal content */
+body.corporate-theme .event-details {
+	border: 1px solid #ddd !important;
+	background-color: #f9f9f9 !important;
+	color: #333 !important;
+}
+
+body.corporate-theme .event-details h3 {
+	color: #e74c3c !important;
+	border-bottom: 1px solid #ddd !important;
+}
+
+body.corporate-theme .event-info p {
+	color: #333 !important;
+}
+
+body.corporate-theme .event-info strong {
+	color: #e74c3c !important;
+}
+
+body.corporate-theme .event-description {
+	color: #666 !important;
+}
+
+body.corporate-theme .event-links a {
+	color: #e74c3c !important;
+	border: 1px solid #e74c3c !important;
+}
+
+body.corporate-theme .event-links a:hover {
+	background-color: #e74c3c !important;
+	color: white !important;
+}
+
+body.corporate-theme .modal-close,
+body.corporate-theme .close-modal {
+	color: #e74c3c !important;
+}
+
+body.corporate-theme .modal-close:hover,
+body.corporate-theme .close-modal:hover {
+	background-color: rgba(231, 76, 60, 0.1) !important;
+}
+
+/* Ultra-specific corporate modal overrides */
+body.corporate-theme #event-modal {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+body.corporate-theme #event-modal .modal-content {
+	background-color: #fff !important;
+	border: 2px solid #e74c3c !important;
+	color: #333 !important;
+	max-height: 80vh !important;
+	overflow-y: auto !important;
+}
+
+body.corporate-theme #event-modal .event-details {
+	border: 1px solid #ddd !important;
+	background-color: #f9f9f9 !important;
+	color: #333 !important;
+}
+
+body.corporate-theme #event-modal .event-details h3 {
+	color: #e74c3c !important;
+	border-bottom: 1px solid #ddd !important;
+}
+
+body.corporate-theme #event-modal .event-info p {
+	color: #333 !important;
+}
+
+body.corporate-theme #event-modal .event-info strong {
+	color: #e74c3c !important;
+}
+
+body.corporate-theme #event-modal .event-description {
+	color: #666 !important;
+}
+
+body.corporate-theme #event-modal .event-links a {
+	color: #e74c3c !important;
+	border: 1px solid #e74c3c !important;
+}
+
+body.corporate-theme #event-modal .event-links a:hover {
+	background-color: #e74c3c !important;
+	color: white !important;
+}
+
+body.corporate-theme #event-modal .event-actions .btn {
+	color: #e74c3c !important;
+	border: 1px solid #e74c3c !important;
+	background-color: transparent !important;
+}
+
+body.corporate-theme #event-modal .event-actions .btn:hover {
+	background-color: #e74c3c !important;
+	color: white !important;
+}
+
+body.corporate-theme #event-modal .event-topics ul {
+	margin-left: 1.5rem !important;
+	margin-top: 0.5rem !important;
+}
+
+body.corporate-theme #event-modal .event-topics ul li {
+	margin-bottom: 0.25rem !important;
+	color: #333 !important;
+}
+
+body.corporate-theme #event-modal .close-modal {
+	color: #e74c3c !important;
+}
+
+body.corporate-theme #event-modal .close-modal:hover {
+	background-color: rgba(231, 76, 60, 0.1) !important;
+}
+
+body.corporate-theme .calendar-title {
+	color: #222 !important;
+}
+
+body.corporate-theme .calendar-nav {
+	border: 1px solid #e74c3c !important;
+	color: #e74c3c !important;
+}
+
+/* Override ALL calendar-related CSS variables for corporate theme */
+body.corporate-theme .calendar-container,
+body.corporate-theme .calendar-modal,
+body.corporate-theme .modal-content,
+body.corporate-theme .calendar-header,
+body.corporate-theme .calendar-grid,
+body.corporate-theme .calendar-day-header,
+body.corporate-theme .calendar-day,
+body.corporate-theme .time-slots,
+body.corporate-theme .time-slot,
+body.corporate-theme .booking-form {
+	--color-lime: #e74c3c !important;
+	--color-white: #222 !important;
+	--color-terminal-bg: #fff !important;
+	--color-magenta: #e74c3c !important;
+}
+
+/* Corporate theme calendar elements with maximum specificity */
+.corporate-theme .calendar-grid .calendar-day-header {
+	color: var(--color-text) !important;
+}
+
+.corporate-theme .calendar-grid .calendar-day {
+	color: var(--color-text) !important;
+}
+
+/* Override ALL calendar elements for corporate theme */
+.corporate-theme .modal-content {
+	background-color: var(--color-bg) !important;
+}
+
+.corporate-theme .modal-close {
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .calendar-nav {
+	border: 1px solid var(--color-accent) !important;
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .calendar-title {
+	color: var(--color-text) !important;
+}
+
+/* Override base calendar styles with highest specificity */
+.corporate-theme .calendar-day-header,
+.corporate-theme .calendar-grid .calendar-day-header {
+	color: var(--color-text) !important;
+	background: var(--color-gray-light) !important;
+}
+
+.corporate-theme .calendar-day,
+.corporate-theme .calendar-grid .calendar-day {
+	color: var(--color-text) !important;
+	background: var(--color-bg) !important;
+}
+
+.corporate-theme .calendar-day:hover,
+.corporate-theme .calendar-grid .calendar-day:hover {
+	border-color: var(--color-accent) !important;
+	background-color: rgba(231, 76, 60, 0.1) !important;
+}
+
+.corporate-theme .calendar-day.available,
+.corporate-theme .calendar-grid .calendar-day.available {
+	border-color: var(--color-accent) !important;
+	background-color: rgba(231, 76, 60, 0.1) !important;
+	color: var(--color-text) !important;
+}
+
+.corporate-theme .calendar-day.loading,
+.corporate-theme .calendar-grid .calendar-day.loading {
+	border-color: var(--color-accent) !important;
+	background-color: rgba(231, 76, 60, 0.05) !important;
+	color: var(--color-accent) !important;
+}
+
+.corporate-theme .calendar-day.selected,
+.corporate-theme .calendar-grid .calendar-day.selected {
+	background-color: var(--color-accent) !important;
+	color: var(--color-bg) !important;
+	border-color: var(--color-accent) !important;
 }
 
 .cypherpunk-theme .carousel-dot.active {
@@ -1667,4 +2115,307 @@ body.scroll-container {
     display: block;
     border-radius: 8px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Event Calendar Styling */
+.calendar-day.has-event {
+    position: relative !important;
+    background-color: rgba(231, 76, 60, 0.1) !important;
+    border: 1px solid #e74c3c !important;
+    font-weight: bold !important;
+}
+
+.calendar-day.has-event:hover {
+    background-color: rgba(231, 76, 60, 0.2) !important;
+    transform: scale(1.05) !important;
+    transition: all 0.2s ease !important;
+}
+
+.event-dot {
+    position: absolute !important;
+    top: 4px !important;
+    right: 4px !important;
+    width: 8px !important;
+    height: 8px !important;
+    background-color: #e74c3c !important;
+    border-radius: 50% !important;
+    animation: pulse-dot 2s infinite !important;
+    z-index: 10 !important;
+}
+
+.event-continuation {
+    position: absolute !important;
+    top: 4px !important;
+    right: 4px !important;
+    width: 12px !important;
+    height: 3px !important;
+    background-color: #e74c3c !important;
+    border-radius: 1px !important;
+    opacity: 0.8 !important;
+    z-index: 10 !important;
+}
+
+@keyframes pulse-dot {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+}
+
+/* Event Modal Styling */
+.event-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.event-modal-content {
+    background-color: var(--color-bg);
+    border: 2px solid #e74c3c;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    color: var(--color-text);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.event-modal h2 {
+    color: #e74c3c;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.event-details {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--color-gray-dark);
+    border-radius: 0.375rem;
+    background-color: var(--color-gray-light);
+}
+
+.event-details h3 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.event-info p {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.event-topics {
+    margin: 1rem 0;
+}
+
+.event-topics ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.event-topics li {
+    margin-bottom: 0.25rem;
+    color: var(--color-text);
+}
+
+.event-availability {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 0.25rem;
+    border-left: 4px solid #e74c3c;
+}
+
+.event-pricing {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 0.25rem;
+    border-left: 4px solid #e74c3c;
+}
+
+.event-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.event-link-btn {
+    background-color: #e74c3c !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 0.375rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.event-link-btn:hover {
+    background-color: #c0392b !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.contact-btn {
+    background-color: transparent !important;
+    border: 2px solid #e74c3c !important;
+    color: #e74c3c !important;
+}
+
+.contact-btn:hover {
+    background-color: #e74c3c !important;
+    color: white !important;
+}
+
+/* Corporate Theme Event Styles */
+.corporate-theme .event-modal-content {
+    background-color: var(--color-bg);
+    border: 2px solid var(--color-accent);
+    color: var(--color-text);
+}
+
+.corporate-theme .event-modal h2 {
+    color: var(--color-accent);
+}
+
+.corporate-theme .event-details {
+    background-color: var(--color-gray-light);
+    border: 1px solid var(--color-gray-dark);
+}
+
+.corporate-theme .event-details h3 {
+    color: var(--color-accent);
+}
+
+.corporate-theme .event-availability {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-left: 4px solid var(--color-accent);
+}
+
+.corporate-theme .event-pricing {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-left: 4px solid var(--color-accent);
+}
+
+.corporate-theme .calendar-day.has-event {
+    background-color: rgba(231, 76, 60, 0.1) !important;
+    border: 1px solid var(--color-accent) !important;
+}
+
+.corporate-theme .event-dot {
+    background-color: var(--color-accent);
+}
+
+.corporate-theme .event-continuation {
+    background-color: var(--color-accent);
+}
+    background-color: var(--color-accent);
+}
+
+/* Cypherpunk Theme Event Styles */
+.cypherpunk-theme .event-modal-content {
+    background-color: var(--color-terminal-bg);
+    border: 2px solid var(--color-lime);
+    color: var(--color-white);
+}
+
+.cypherpunk-theme .event-modal h2 {
+    color: var(--color-lime);
+}
+
+.cypherpunk-theme .event-details {
+    background-color: rgba(0, 255, 0, 0.05);
+    border: 1px solid var(--color-lime);
+}
+
+.cypherpunk-theme .event-details h3 {
+    color: var(--color-lime);
+}
+
+.cypherpunk-theme .event-availability {
+    background-color: rgba(0, 255, 0, 0.1);
+    border-left: 4px solid var(--color-lime);
+}
+
+.cypherpunk-theme .event-pricing {
+    background-color: rgba(0, 255, 0, 0.1);
+    border-left: 4px solid var(--color-lime);
+}
+
+.cypherpunk-theme .calendar-day.has-event {
+    background-color: rgba(0, 255, 0, 0.1) !important;
+    border: 1px solid var(--color-lime) !important;
+}
+
+.cypherpunk-theme .event-dot {
+    background-color: var(--color-lime);
+}
+
+.cypherpunk-theme .event-continuation {
+    background-color: var(--color-lime);
+}
+
+.cypherpunk-theme .calendar-nav {
+    border: 1px solid var(--color-lime) !important;
+    color: var(--color-lime) !important;
+}
+
+.cypherpunk-theme .calendar-nav:hover {
+    background-color: var(--color-lime) !important;
+    color: var(--color-terminal-bg) !important;
+}
+
+.cypherpunk-theme .event-link-btn {
+    background-color: var(--color-lime) !important;
+    color: var(--color-terminal-bg) !important;
+}
+
+.cypherpunk-theme .event-link-btn:hover {
+    background-color: var(--color-magenta) !important;
+}
+
+.cypherpunk-theme .contact-btn {
+    border: 2px solid var(--color-lime) !important;
+    color: var(--color-lime) !important;
+}
+
+.cypherpunk-theme .contact-btn:hover {
+    background-color: var(--color-lime) !important;
+    color: var(--color-terminal-bg) !important;
+}
+
+/* Responsive Event Modal */
+@media (max-width: 768px) {
+    .event-modal-content {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .event-actions {
+        flex-direction: column;
+    }
+
+    .event-link-btn,
+    .contact-btn {
+        width: 100%;
+        text-align: center;
+    }
 }
