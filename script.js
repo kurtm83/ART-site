@@ -120,18 +120,13 @@ function forceCorporateCalendarStyles() {
 	// Force calendar days to be dark text on white background
 	const days = document.querySelectorAll('.calendar-day');
 	days.forEach(day => {
-		// Only style non-event days, preserve event styling
-		if (!day.classList.contains('has-event')) {
-			day.style.color = '#222 !important';
-			day.style.background = '#fff !important';
-			day.style.border = '1px solid rgba(0,0,0,0.1) !important';
-		}
+		day.style.setProperty('color', '#000', 'important');
 	});
 	
 	// Force calendar title to be dark
 	const title = document.querySelector('.calendar-title');
 	if (title) {
-		title.style.color = '#222 !important';
+		title.style.setProperty('color', '#000', 'important');
 	}
 	
 	// Force calendar container to have white background
@@ -159,9 +154,10 @@ function removeForcedCalendarStyles() {
 	
 	const days = document.querySelectorAll('.calendar-day');
 	days.forEach(day => {
-		// Only remove styles from non-event days, preserve event styling
+		// Remove forced color styling from all days
+		day.style.color = '';
+		// Only remove background/border from non-event days to preserve event styling
 		if (!day.classList.contains('has-event')) {
-			day.style.color = '';
 			day.style.background = '';
 			day.style.border = '';
 		}

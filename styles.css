@@ -529,7 +529,7 @@ body.scroll-container {
 }
 
 .calendar-title {
-	color: #222;
+	color: #fff;
 	font-size: 1.25rem;
 	font-weight: bold;
 	text-align: center;
@@ -559,7 +559,7 @@ body.scroll-container {
 	border-radius: 0.25rem;
 	cursor: pointer;
 	transition: all 0.3s;
-	color: #222;
+	color: #fff;
 	font-size: 0.875rem;
 }
 
@@ -1465,7 +1465,7 @@ body.scroll-container {
 
 .corporate-theme .calendar-day {
 	background: white;
-	color: var(--color-text);
+	color: #000;
 	border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -1732,7 +1732,7 @@ body.corporate-theme .calendar-grid .calendar-day-header {
 
 body.corporate-theme .calendar-day,
 body.corporate-theme .calendar-grid .calendar-day {
-	color: #222 !important;
+	color: #000 !important;
 	background: #fff !important;
 	border: 1px solid rgba(0, 0, 0, 0.05) !important;
 }

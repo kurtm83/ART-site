@@ -3,9 +3,9 @@ const trainingEvents = [
     {
         id: 1,
         title: "Level I - NURBS Modeling",
-        date: "2025-10-13",
-        endDate: "2025-10-18",
-        time: "Multi-day course (October 13-18, 2025)",
+        date: "2025-11-10",
+        endDate: "2025-11-15",
+        time: "Monday-Saturday/9am-1pm EST (November 10-15, 2025)",
         instructor: "Kurt - Authorized Rhino Trainer",
         level: "Beginner",
         format: "Online",
@@ -19,7 +19,7 @@ const trainingEvents = [
         ],
         price: "US$595",
         rhinoUrl: "https://www.rhino3d.com/training/4036/?lang=en&format=Online",
-        courseOutline: "http://files.na.mcneel.com/rhino/5.0/docs/en/rhino-level1-outline.pdf",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
         contact: "kurt@rhino.training",
         contactUrl: "https://rhino.training/contact",
         language: "English"
@@ -29,7 +29,7 @@ const trainingEvents = [
         title: "Level II - Advanced Rhino 3D Modeling",
         date: "2025-11-03",
         endDate: "2025-11-08", 
-        time: "Multi-day course (November 3-8, 2025)",
+        time: "Monday-Saturday/9am-1pm EST (November 3-8, 2025)",
         instructor: "Kurt - Authorized Rhino Trainer",
         level: "Intermediate",
         format: "Online",
@@ -43,7 +43,7 @@ const trainingEvents = [
         ],
         price: "US$595",
         rhinoUrl: "https://www.rhino3d.com/training/4038/?lang=en&format=Online",
-        courseOutline: "http://files.na.mcneel.com/rhino/5.0/docs/en/rhino-level1-outline.pdf",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level2/en-us/Default.htm#topics/00_introduction.htm",
         contact: "kurt@rhino.training",
         contactUrl: "https://rhino.training/contact",
         language: "English"
@@ -217,6 +217,16 @@ function renderCalendar() {
     
     // Ensure event styling is applied after rendering
     enhanceEventStyling();
+    
+    // Apply corporate styling if in corporate mode
+    const body = document.body;
+    if (body.classList.contains('corporate-theme')) {
+        setTimeout(() => {
+            if (typeof forceCorporateCalendarStyles === 'function') {
+                forceCorporateCalendarStyles();
+            }
+        }, 50);
+    }
 }
 
 function enhanceEventStyling() {
@@ -332,7 +342,7 @@ function showEventModal(events, date) {
                         <a href="${event.rhinoUrl}" target="_blank" class="btn event-link-btn">
                             Rhino3D.com Link
                         </a>
-                        ${event.courseOutline ? `<a href="${event.courseOutline}" target="_blank" class="btn btn-secondary">Course Outline (PDF)</a>` : ''}
+                        ${event.courseOutline ? `<a href="${event.courseOutline}" target="_blank" class="btn btn-secondary">Course Outline</a>` : ''}
                     </div>
                 </div>
             </div>
