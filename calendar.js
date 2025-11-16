@@ -1,11 +1,89 @@
 // Training Events Data
 const trainingEvents = [
     {
-        id: 1,
-        title: "Level I - NURBS Modeling",
-        date: "2025-11-10",
-        endDate: "2025-11-15",
-        time: "Monday-Saturday/9am-1pm EST (November 10-15, 2025)",
+        id: 3,
+        title: "Level II - Advanced Rhino 3D Modeling",
+        date: "2025-11-24",
+        endDate: "2025-11-29",
+        colorClass: "event-red",
+        time: "Monday-Saturday/9am-1pm EST (November 24-29, 2025)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Intermediate",
+        format: "Online",
+        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier.",
+        topics: [
+            "Advanced Rhino features and capabilities",
+            "Tips and tricks for efficient modeling",
+            "High quality model creation techniques",
+            "Advanced workflow optimization",
+            "Professional modeling strategies"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English"
+    },
+    {
+        id: 4,
+        title: "Level II - Advanced Rhino 3D Modeling - MWF - 2 weeks",
+        date: "2025-12-01",
+        endDate: "2025-12-12",
+        scheduleDays: [1, 3, 5], // Monday=1, Wednesday=3, Friday=5
+        colorClass: "event-blue",
+        time: "Monday, Wednesday, Friday for 2 weeks / 9am-1pm EST (December 1-12, 2025)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Intermediate",
+        format: "Online",
+        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier.",
+        topics: [
+            "Advanced Rhino features and capabilities",
+            "Tips and tricks for efficient modeling",
+            "High quality model creation techniques",
+            "Advanced workflow optimization",
+            "Professional modeling strategies"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English"
+    },
+    {
+        id: 5,
+        title: "Level II - Advanced Rhino 3D Modeling T-TH-S Evenings",
+        date: "2025-12-02",
+        endDate: "2025-12-13",
+        scheduleDays: [2, 4, 6], // Tuesday=2, Thursday=4, Saturday=6
+        colorClass: "event-green",
+        time: "Tuesday, Thursday, Saturday / 5pm-9pm EST / Two weeks (December 2-13, 2025)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Intermediate",
+        format: "Online",
+        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier.",
+        topics: [
+            "Advanced Rhino features and capabilities",
+            "Tips and tricks for efficient modeling",
+            "High quality model creation techniques",
+            "Advanced workflow optimization",
+            "Professional modeling strategies"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English"
+    },
+    {
+        id: 6,
+        title: "Level I - NURBS Modeling Monday-Saturday A.M., 6 days",
+        date: "2025-12-15",
+        endDate: "2025-12-20",
+        colorClass: "event-purple",
+        time: "9am-1pm Monday-Saturday for 6 straight days (December 15-20, 2025)",
         instructor: "Kurt - Authorized Rhino Trainer",
         level: "Beginner",
         format: "Online",
@@ -20,30 +98,6 @@ const trainingEvents = [
         price: "US$595",
         rhinoUrl: "https://www.rhino3d.com/training/4036/?lang=en&format=Online",
         courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
-        contact: "kurt@rhino.training",
-        contactUrl: "https://rhino.training/contact",
-        language: "English"
-    },
-    {
-        id: 2,
-        title: "Level II - Advanced Rhino 3D Modeling",
-        date: "2025-11-03",
-        endDate: "2025-11-08", 
-        time: "Monday-Saturday/9am-1pm EST (November 3-8, 2025)",
-        instructor: "Kurt - Authorized Rhino Trainer",
-        level: "Intermediate",
-        format: "Online",
-        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier.",
-        topics: [
-            "Advanced Rhino features and capabilities",
-            "Tips and tricks for efficient modeling",
-            "High quality model creation techniques",
-            "Advanced workflow optimization",
-            "Professional modeling strategies"
-        ],
-        price: "US$595",
-        rhinoUrl: "https://www.rhino3d.com/training/4038/?lang=en&format=Online",
-        courseOutline: "https://docs.mcneel.com/rhino/8/training-level2/en-us/Default.htm#topics/00_introduction.htm",
         contact: "kurt@rhino.training",
         contactUrl: "https://rhino.training/contact",
         language: "English"
@@ -171,33 +225,57 @@ function renderCalendar() {
         // Check if this day has an event (including multi-day events)
         const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         const eventsOnThisDay = trainingEvents.filter(event => {
-            const eventStart = new Date(event.date);
-            const eventEnd = new Date(event.endDate || event.date);
-            const currentDate = new Date(dateString);
+            // Parse dates consistently to avoid timezone issues
+            const [startYear, startMonth, startDay] = event.date.split('-').map(Number);
+            const [endYear, endMonth, endDay] = (event.endDate || event.date).split('-').map(Number);
+            const eventStart = new Date(startYear, startMonth - 1, startDay);
+            const eventEnd = new Date(endYear, endMonth - 1, endDay);
+            const currentDate = new Date(currentYear, currentMonth, day);
             
             // Check if current date falls within the event period
-            return currentDate >= eventStart && currentDate <= eventEnd;
+            if (currentDate < eventStart || currentDate > eventEnd) {
+                return false;
+            }
+            
+            // If event has scheduleDays (specific days of week), check if current day matches
+            if (event.scheduleDays && event.scheduleDays.length > 0) {
+                const dayOfWeek = currentDate.getDay(); // 0=Sunday, 1=Monday, ..., 6=Saturday
+                return event.scheduleDays.includes(dayOfWeek);
+            }
+            
+            // For events without scheduleDays (daily events), include all days in range
+            return true;
         });
 
         if (eventsOnThisDay.length > 0) {
             console.log(`🎯 Found ${eventsOnThisDay.length} event(s) on ${dateString}:`, eventsOnThisDay.map(e => e.title));
             dayElement.classList.add('has-event');
             
+            // Add color class for the primary event (first event if multiple)
+            if (eventsOnThisDay[0].colorClass) {
+                dayElement.classList.add(eventsOnThisDay[0].colorClass);
+            }
+            
             // Check if this is the start date of an event
-            const isStartDate = eventsOnThisDay.some(event => event.date === dateString);
+            const isStartDate = eventsOnThisDay.some(event => {
+                const [startYear, startMonth, startDay] = event.date.split('-').map(Number);
+                const eventStartDate = new Date(startYear, startMonth - 1, startDay);
+                const currentDateCheck = new Date(currentYear, currentMonth, day);
+                return eventStartDate.getTime() === currentDateCheck.getTime();
+            });
             
             if (isStartDate) {
                 console.log(`🔴 ${dateString} is a start date`);
                 dayElement.innerHTML = `
                     ${day}
-                    <div class="event-dot"></div>
+                    <div class="event-dot ${eventsOnThisDay[0].colorClass || ''}"></div>
                 `;
             } else {
                 console.log(`📏 ${dateString} is a continuation date`);
                 // For continuation days, add a different indicator
                 dayElement.innerHTML = `
                     ${day}
-                    <div class="event-continuation"></div>
+                    <div class="event-continuation ${eventsOnThisDay[0].colorClass || ''}"></div>
                 `;
             }
             
@@ -233,28 +311,96 @@ function enhanceEventStyling() {
     // Add extra styling to ensure event indicators are visible
     const eventDays = document.querySelectorAll('.calendar-day.has-event');
     eventDays.forEach(day => {
-        // Force event day styling
-        day.style.setProperty('background-color', 'rgba(231, 76, 60, 0.1)', 'important');
-        day.style.setProperty('border', '1px solid #e74c3c', 'important');
+        // Force event day styling while preserving color classes
         day.style.setProperty('font-weight', 'bold', 'important');
         day.style.setProperty('position', 'relative', 'important');
+        
+        // Apply color-specific styling
+        if (day.classList.contains('event-red')) {
+            day.style.setProperty('background-color', 'rgba(231, 76, 60, 0.15)', 'important');
+            day.style.setProperty('border', '2px solid #e74c3c', 'important');
+        } else if (day.classList.contains('event-blue')) {
+            day.style.setProperty('background-color', 'rgba(52, 152, 219, 0.15)', 'important');
+            day.style.setProperty('border', '2px solid #3498db', 'important');
+        } else if (day.classList.contains('event-green')) {
+            day.style.setProperty('background-color', 'rgba(46, 204, 113, 0.15)', 'important');
+            day.style.setProperty('border', '2px solid #2ecc71', 'important');
+        } else if (day.classList.contains('event-purple')) {
+            day.style.setProperty('background-color', 'rgba(155, 89, 182, 0.15)', 'important');
+            day.style.setProperty('border', '2px solid #9b59b6', 'important');
+        }
+        
+        // Check if we're in cypherpunk theme and apply different colors
+        if (document.body.classList.contains('cypherpunk-theme')) {
+            if (day.classList.contains('event-red')) {
+                day.style.setProperty('background-color', 'rgba(0, 255, 0, 0.15)', 'important');
+                day.style.setProperty('border', '2px solid #00ff00', 'important');
+            } else if (day.classList.contains('event-blue')) {
+                day.style.setProperty('background-color', 'rgba(0, 255, 255, 0.15)', 'important');
+                day.style.setProperty('border', '2px solid #00ffff', 'important');
+            } else if (day.classList.contains('event-green')) {
+                day.style.setProperty('background-color', 'rgba(255, 0, 255, 0.15)', 'important');
+                day.style.setProperty('border', '2px solid #FF8080', 'important');
+            } else if (day.classList.contains('event-purple')) {
+                day.style.setProperty('background-color', 'rgba(255, 255, 0, 0.15)', 'important');
+                day.style.setProperty('border', '2px solid #ffff00', 'important');
+            }
+        }
     });
     
-    // Ensure dots and bars are visible
+    // Ensure dots and bars are visible with correct colors
     const dots = document.querySelectorAll('.event-dot');
     dots.forEach(dot => {
         dot.style.setProperty('display', 'block', 'important');
         dot.style.setProperty('position', 'absolute', 'important');
-        dot.style.setProperty('background-color', '#e74c3c', 'important');
         dot.style.setProperty('z-index', '10', 'important');
+        dot.style.setProperty('top', '4px', 'important');
+        dot.style.setProperty('right', '4px', 'important');
+        dot.style.setProperty('width', '8px', 'important');
+        dot.style.setProperty('height', '8px', 'important');
+        dot.style.setProperty('border-radius', '50%', 'important');
+        
+        // Apply color based on class
+        if (dot.classList.contains('event-red')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#00ff00' : '#e74c3c';
+            dot.style.setProperty('background-color', color, 'important');
+        } else if (dot.classList.contains('event-blue')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#00ffff' : '#3498db';
+            dot.style.setProperty('background-color', color, 'important');
+        } else if (dot.classList.contains('event-green')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#FF8080' : '#2ecc71';
+            dot.style.setProperty('background-color', color, 'important');
+        } else if (dot.classList.contains('event-purple')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#ffff00' : '#9b59b6';
+            dot.style.setProperty('background-color', color, 'important');
+        }
     });
     
     const bars = document.querySelectorAll('.event-continuation');
     bars.forEach(bar => {
         bar.style.setProperty('display', 'block', 'important');
         bar.style.setProperty('position', 'absolute', 'important');
-        bar.style.setProperty('background-color', '#e74c3c', 'important');
         bar.style.setProperty('z-index', '10', 'important');
+        bar.style.setProperty('top', '4px', 'important');
+        bar.style.setProperty('right', '4px', 'important');
+        bar.style.setProperty('width', '12px', 'important');
+        bar.style.setProperty('height', '3px', 'important');
+        bar.style.setProperty('border-radius', '1px', 'important');
+        
+        // Apply color based on class
+        if (bar.classList.contains('event-red')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#00ff00' : '#e74c3c';
+            bar.style.setProperty('background-color', color, 'important');
+        } else if (bar.classList.contains('event-blue')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#00ffff' : '#3498db';
+            bar.style.setProperty('background-color', color, 'important');
+        } else if (bar.classList.contains('event-green')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#FF8080' : '#2ecc71';
+            bar.style.setProperty('background-color', color, 'important');
+        } else if (bar.classList.contains('event-purple')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#ffff00' : '#9b59b6';
+            bar.style.setProperty('background-color', color, 'important');
+        }
     });
     
     console.log(`✅ Enhanced styling for ${eventDays.length} event days, ${dots.length} dots, ${bars.length} bars`);

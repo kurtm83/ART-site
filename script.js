@@ -117,10 +117,16 @@ function forceCorporateCalendarStyles() {
 		header.style.background = '#f5f5f5 !important';
 	});
 	
-	// Force calendar days to be dark text on white background
+	// Force calendar days to be dark text on white background, but preserve event colors
 	const days = document.querySelectorAll('.calendar-day');
 	days.forEach(day => {
 		day.style.setProperty('color', '#000', 'important');
+		
+		// Only set default background if it's NOT an event day
+		if (!day.classList.contains('has-event')) {
+			day.style.background = '#fff';
+			day.style.border = '1px solid rgba(0,0,0,0.1)';
+		}
 	});
 	
 	// Force calendar title to be dark

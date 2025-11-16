@@ -2118,6 +2118,153 @@ body.corporate-theme .booking-form {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+/* Event Calendar Color Coding */
+/* Corporate Theme Event Colors */
+.calendar-day.has-event.event-red {
+    background-color: rgba(231, 76, 60, 0.1) !important;
+    border: 1px solid #e74c3c !important;
+}
+
+.calendar-day.has-event.event-blue {
+    background-color: rgba(52, 152, 219, 0.1) !important;
+    border: 1px solid #3498db !important;
+}
+
+.calendar-day.has-event.event-green {
+    background-color: rgba(46, 204, 113, 0.1) !important;
+    border: 1px solid #2ecc71 !important;
+}
+
+.calendar-day.has-event.event-purple {
+    background-color: rgba(155, 89, 182, 0.1) !important;
+    border: 1px solid #9b59b6 !important;
+}
+
+/* Event dots and continuation bars - Corporate Theme */
+.event-dot.event-red {
+    background-color: #e74c3c !important;
+}
+
+.event-dot.event-blue {
+    background-color: #3498db !important;
+}
+
+.event-dot.event-green {
+    background-color: #2ecc71 !important;
+}
+
+.event-continuation.event-red {
+    background-color: #e74c3c !important;
+}
+
+.event-continuation.event-blue {
+    background-color: #3498db !important;
+}
+
+.event-continuation.event-green {
+    background-color: #2ecc71 !important;
+}
+
+.event-dot.event-purple {
+    background-color: #9b59b6 !important;
+}
+
+.event-continuation.event-purple {
+    background-color: #9b59b6 !important;
+}
+
+/* Cypherpunk Theme Event Colors */
+.cypherpunk-theme .calendar-day.has-event.event-red {
+    background-color: rgba(0, 255, 0, 0.1) !important;
+    border: 1px solid var(--color-lime) !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-blue {
+    background-color: rgba(0, 255, 255, 0.1) !important;
+    border: 1px solid #00ffff !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-green {
+    background-color: rgba(255, 0, 255, 0.1) !important;
+    border: 1px solid var(--color-magenta) !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-purple {
+    background-color: rgba(255, 255, 0, 0.1) !important;
+    border: 1px solid #ffff00 !important;
+}
+
+/* Event dots and continuation bars - Cypherpunk Theme */
+.cypherpunk-theme .event-dot.event-red {
+    background-color: var(--color-lime) !important;
+}
+
+.cypherpunk-theme .event-dot.event-blue {
+    background-color: #00ffff !important;
+}
+
+.cypherpunk-theme .event-dot.event-green {
+    background-color: var(--color-magenta) !important;
+}
+
+.cypherpunk-theme .event-continuation.event-red {
+    background-color: var(--color-lime) !important;
+}
+
+.cypherpunk-theme .event-continuation.event-blue {
+    background-color: #00ffff !important;
+}
+
+.cypherpunk-theme .event-continuation.event-green {
+    background-color: var(--color-magenta) !important;
+}
+
+.cypherpunk-theme .event-dot.event-purple {
+    background-color: #ffff00 !important;
+}
+
+.cypherpunk-theme .event-continuation.event-purple {
+    background-color: #ffff00 !important;
+}
+
+/* Hover effects for colored events */
+.calendar-day.has-event.event-red:hover {
+    background-color: rgba(231, 76, 60, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
+.calendar-day.has-event.event-blue:hover {
+    background-color: rgba(52, 152, 219, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
+.calendar-day.has-event.event-green:hover {
+    background-color: rgba(46, 204, 113, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
+.calendar-day.has-event.event-purple:hover {
+    background-color: rgba(155, 89, 182, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Cypherpunk hover effects */
+.cypherpunk-theme .calendar-day.has-event.event-red:hover {
+    background-color: rgba(0, 255, 0, 0.2) !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-blue:hover {
+    background-color: rgba(0, 255, 255, 0.2) !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-green:hover {
+    background-color: rgba(255, 0, 255, 0.2) !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-purple:hover {
+    background-color: rgba(255, 255, 0, 0.2) !important;
+}
+
 /* Event Calendar Styling */
 .calendar-day.has-event {
     position: relative !important;
