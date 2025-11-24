@@ -76,31 +76,6 @@ const trainingEvents = [
         contact: "kurt@rhino.training",
         contactUrl: "https://rhino.training/contact",
         language: "English"
-    },
-    {
-        id: 6,
-        title: "Level I - NURBS Modeling Monday-Saturday A.M., 6 days",
-        date: "2025-12-15",
-        endDate: "2025-12-20",
-        colorClass: "event-purple",
-        time: "9am-1pm Monday-Saturday for 6 straight days (December 15-20, 2025)",
-        instructor: "Kurt - Authorized Rhino Trainer",
-        level: "Beginner",
-        format: "Online",
-        description: "In this class you'll learn to create and edit accurate free-form 3-D NURBS models. This fast-moving class covers most of Rhino's functionality, including the most advanced surfacing commands.",
-        topics: [
-            "NURBS modeling fundamentals",
-            "Creating accurate free-form 3-D models", 
-            "Advanced surfacing commands",
-            "Model editing and refinement",
-            "Professional workflow techniques"
-        ],
-        price: "US$595",
-        rhinoUrl: "https://www.rhino3d.com/training/4036/?lang=en&format=Online",
-        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
-        contact: "kurt@rhino.training",
-        contactUrl: "https://rhino.training/contact",
-        language: "English"
     }
 ];
 

@@ -42,6 +42,44 @@
 						<p class="subheading">Rhino3D Consulting - Training - Support</p>
 					</div>
 
+					<!-- Payment Information Section -->
+					<div class="payment-section">
+						<h3 class="payment-title">Class Registration & Payment</h3>
+						<p class="payment-description">
+							Ready to register for a training class? Choose from multiple convenient payment options below. 
+							All classes are US$595 and include comprehensive training materials and one-on-one support.
+						</p>
+						<div class="payment-notes">
+							<p class="payment-note">
+								<strong>Note:</strong> Please be sure to include your name, email, and class dates you are signing up for. 
+								If you have any questions feel free to reach out <a href="contact/index.html" class="email-link">here</a>.
+							</p>
+						</div>
+						
+						<div class="payment-options">
+							<!-- Venmo Payment -->
+							<div class="payment-option">
+								<h4 class="payment-method-title">Venmo</h4>
+								<p class="payment-method-description">Send payment directly via Venmo</p>
+								<div class="venmo-container">
+									<div class="venmo-handle">@Kurt-Moorman</div>
+									<div class="venmo-qr">
+										<img src="images/venmo_qr.png" alt="Venmo QR Code" class="venmo-qr-image" style="width: 150px; height: 150px; object-fit: contain;" />
+									</div>
+								</div>
+							</div>
+
+							<!-- PayPal Payment -->
+							<div class="payment-option">
+								<h4 class="payment-method-title">PayPal</h4>
+								<p class="payment-method-description">Secure payment with PayPal</p>
+								<div class="paypal-container">
+									<div id="paypal-button-container"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<!-- Training Calendar - MOVED TO TOP -->
 					<div class="calendar-container">
 						<h2 class="calendar-title">Upcoming Training Sessions</h2>
@@ -238,5 +276,30 @@
 
 		<script src="script.js"></script>
 		<script src="calendar.js"></script>
+		<script src="https://www.paypal.com/sdk/js?client-id=AfnZ_GBa-oEir29pUnmT4AxzUvu50ywRmYT6r4YnLVGiHpDbLFZMt_Doz2xzvkRo35dYtOA6Lh3mj-UA&currency=USD"></script>
+		<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '595'
+                    },
+                    description: 'Rhino Training Class Registration'
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Payment successful! Thank you, ' + details.payer.name.given_name + '! Please email kurt@rhino.training with your preferred class dates.');
+                console.log('Transaction completed by ' + details.payer.name.given_name);
+            });
+        },
+        onError: function(err) {
+            console.error('PayPal error:', err);
+            alert('Payment error. Please try again or contact kurt@rhino.training for assistance.');
+        }
+    }).render('#paypal-button-container');
+</script>
 	</body>
 </html>
