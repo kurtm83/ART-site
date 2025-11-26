@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhino Training Signups - Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            color: #ff00ff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: rgba(255, 0, 255, 0.1);
+            border: 1px solid #ff00ff;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff00;
+        }
+        
+        .controls {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: #ff00ff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #ff00aa;
+            transform: translateY(-2px);
+        }
+        
+        .btn-download {
+            background: #00ff00;
+            color: #000;
+        }
+        
+        .btn-download:hover {
+            background: #00aa00;
+        }
+        
+        .signups-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .signups-table th,
+        .signups-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.3);
+        }
+        
+        .signups-table th {
+            background: rgba(255, 0, 255, 0.2);
+            color: #ff00ff;
+            font-weight: bold;
+        }
+        
+        .status-paid {
+            color: #00ff00;
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            color: #ffff00;
+            font-weight: bold;
+        }
+        
+        .no-signups {
+            text-align: center;
+            padding: 3rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .email-link {
+            color: #00aaff;
+            text-decoration: none;
+        }
+        
+        .email-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🦏 Rhino Training Signups</h1>
+        <p>Admin Dashboard</p>
+    </div>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number" id="total-signups">0</div>
+            <div>Total Signups</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="paid-signups">0</div>
+            <div>Paid</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="pending-signups">0</div>
+            <div>Pending</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="total-revenue">$0</div>
+            <div>Revenue</div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button class="btn" onclick="refreshData()">🔄 Refresh</button>
+        <button class="btn btn-download" onclick="downloadCSV()">📥 Download CSV</button>
+        <button class="btn" onclick="clearAllData()" style="background: #ff4444;">🗑️ Clear All Data</button>
+    </div>
+    
+    <div id="signups-container">
+        <table class="signups-table" id="signups-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Class</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Transaction ID</th>
+                </tr>
+            </thead>
+            <tbody id="signups-tbody">
+                <!-- Data will be loaded here -->
+            </tbody>
+        </table>
+        
+        <div id="no-signups" class="no-signups" style="display: none;">
+            <h3>No signups yet</h3>
+            <p>Student signups will appear here once they register</p>
+        </div>
+    </div>
+
+    <script>
+        // Load and display signup data
+        function loadSignups() {
+            const signups = JSON.parse(localStorage.getItem('rhinoSignups') || '[]');
+            const tbody = document.getElementById('signups-tbody');
+            const noSignupsDiv = document.getElementById('no-signups');
+            
+            if (signups.length === 0) {
+                document.getElementById('signups-table').style.display = 'none';
+                noSignupsDiv.style.display = 'block';
+                updateStats(signups);
+                return;
+            }
+            
+            document.getElementById('signups-table').style.display = 'table';
+            noSignupsDiv.style.display = 'none';
+            
+            // Sort by timestamp (newest first)
+            signups.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            tbody.innerHTML = signups.map(signup => {
+                const date = new Date(signup.timestamp).toLocaleDateString();
+                const status = signup.paid ? 'Paid' : 'Pending';
+                const statusClass = signup.paid ? 'status-paid' : 'status-pending';
+                const transactionId = signup.paypalTransactionId || '-';
+                
+                return `
+                    <tr>
+                        <td>${date}</td>
+                        <td>${signup.name}</td>
+                        <td><a href="mailto:${signup.email}" class="email-link">${signup.email}</a></td>
+                        <td>${signup.className}</td>
+                        <td>${signup.price}</td>
+                        <td class="${statusClass}">${status}</td>
+                        <td>${transactionId}</td>
+                    </tr>
+                `;
+            }).join('');
+            
+            updateStats(signups);
+        }
+        
+        // Update statistics
+        function updateStats(signups) {
+            const totalSignups = signups.length;
+            const paidSignups = signups.filter(s => s.paid).length;
+            const pendingSignups = totalSignups - paidSignups;
+            
+            // Calculate revenue
+            const totalRevenue = signups
+                .filter(s => s.paid)
+                .reduce((sum, s) => sum + parseFloat(s.price.replace('US$', '')), 0);
+            
+            document.getElementById('total-signups').textContent = totalSignups;
+            document.getElementById('paid-signups').textContent = paidSignups;
+            document.getElementById('pending-signups').textContent = pendingSignups;
+            document.getElementById('total-revenue').textContent = `$${totalRevenue.toFixed(0)}`;
+        }
+        
+        // Refresh data
+        function refreshData() {
+            loadSignups();
+        }
+        
+        // Download CSV
+        function downloadCSV() {
+            const signups = JSON.parse(localStorage.getItem('rhinoSignups') || '[]');
+            
+            if (signups.length === 0) {
+                alert('No signup data to download');
+                return;
+            }
+            
+            // CSV headers
+            const headers = ['Date', 'Name', 'Email', 'Class', 'Schedule', 'Price', 'Status', 'Transaction ID'];
+            
+            // CSV rows
+            const rows = signups.map(signup => [
+                new Date(signup.timestamp).toLocaleDateString(),
+                signup.name,
+                signup.email,
+                signup.className,
+                signup.classTime,
+                signup.price,
+                signup.paid ? 'Paid' : 'Pending',
+                signup.paypalTransactionId || ''
+            ]);
+            
+            // Create CSV content
+            const csvContent = [headers, ...rows]
+                .map(row => row.map(field => `"${field}"`).join(','))
+                .join('\n');
+            
+            // Download file
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `rhino-signups-${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+        
+        // Clear all data (with confirmation)
+        function clearAllData() {
+            if (confirm('Are you sure you want to delete ALL signup data? This cannot be undone!')) {
+                if (confirm('Really sure? This will permanently delete all signups!')) {
+                    localStorage.removeItem('rhinoSignups');
+                    loadSignups();
+                    alert('All signup data has been cleared');
+                }
+            }
+        }
+        
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSignups();
+            
+            // Auto-refresh every 30 seconds
+            setInterval(loadSignups, 30000);
+        });
+    </script>
+</body>
+</html>

@@ -42,45 +42,7 @@
 						<p class="subheading">Rhino3D Consulting - Training - Support</p>
 					</div>
 
-					<!-- Payment Information Section -->
-					<div class="payment-section">
-						<h3 class="payment-title">Class Registration & Payment</h3>
-						<p class="payment-description">
-							Ready to register for a training class? Choose from multiple convenient payment options below. 
-							All classes are US$595 and include comprehensive training materials and one-on-one support.
-						</p>
-						<div class="payment-notes">
-							<p class="payment-note">
-								<strong>Note:</strong> Please be sure to include your name, email, and class dates you are signing up for. 
-								If you have any questions feel free to reach out <a href="contact/index.html" class="email-link">here</a>.
-							</p>
-						</div>
-						
-						<div class="payment-options">
-							<!-- Venmo Payment -->
-							<div class="payment-option">
-								<h4 class="payment-method-title">Venmo</h4>
-								<p class="payment-method-description">Send payment directly via Venmo</p>
-								<div class="venmo-container">
-									<div class="venmo-handle">@Kurt-Moorman</div>
-									<div class="venmo-qr">
-										<img src="images/venmo_qr.png" alt="Venmo QR Code" class="venmo-qr-image" style="width: 150px; height: 150px; object-fit: contain;" />
-									</div>
-								</div>
-							</div>
-
-							<!-- PayPal Payment -->
-							<div class="payment-option">
-								<h4 class="payment-method-title">PayPal</h4>
-								<p class="payment-method-description">Secure payment with PayPal</p>
-								<div class="paypal-container">
-									<div id="paypal-button-container"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- Training Calendar - MOVED TO TOP -->
+					<!-- Training Calendar -->
 					<div class="calendar-container">
 						<h2 class="calendar-title">Upcoming Training Sessions</h2>
 						<div class="calendar">
@@ -146,6 +108,39 @@
 							<div class="legend-item">
 								<div class="legend-color training-day"></div>
 								<span>Training Sessions Available</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Payment Information Section -->
+					<div class="payment-section">
+						<h3 class="payment-title">Class Registration & Payment</h3>
+						<p class="payment-description">
+							Ready to register for a training class? Choose from multiple convenient payment options below. 
+							All classes are US$595 and include comprehensive training materials and one-on-one support.
+						</p>
+						<div class="payment-notes">
+							<p class="payment-note">
+								<strong>Note:</strong> Please be sure to include your name, email, and class dates you are signing up for. 
+								If you have any questions feel free to reach out <a href="contact/index.html" class="email-link">here</a>.
+							</p>
+						</div>
+						
+						<div class="payment-options">
+					<!-- Venmo Payment -->
+					<div class="payment-option">
+						<h4 class="payment-method-title">Venmo</h4>
+						<p class="payment-method-description">Send payment directly via Venmo</p>
+						<div class="venmo-container">
+							<button id="venmo-button" class="venmo-button">Pay with Venmo</button>
+						</div>
+					</div>							<!-- PayPal Payment -->
+							<div class="payment-option">
+								<h4 class="payment-method-title">PayPal</h4>
+								<p class="payment-method-description">Secure payment with PayPal</p>
+								<div class="paypal-container">
+									<div id="paypal-button-container"></div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -301,5 +296,46 @@
         }
     }).render('#paypal-button-container');
 </script>
+
+<!-- Venmo Modal -->
+<div id="venmo-modal" class="modal venmo-modal">
+	<div class="modal-content">
+		<span class="close" id="venmo-close">&times;</span>
+		<h3 class="modal-title">Pay with Venmo</h3>
+		<div class="venmo-modal-content">
+			<div class="venmo-handle-large">@Kurt-Moorman</div>
+			<div class="venmo-qr-large">
+				<img src="images/venmo_qr.png" alt="Venmo QR Code" class="venmo-qr-image-large" />
+			</div>
+			<p class="venmo-instructions">Scan the QR code with your Venmo app or search for @Kurt-Moorman</p>
+		</div>
+	</div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signup-modal" class="modal signup-modal">
+	<div class="modal-content">
+		<span class="close" id="signup-close">&times;</span>
+		<h3 class="modal-title">Sign Up for Training</h3>
+		<div id="signup-class-info" class="signup-class-info"></div>
+		
+		<form id="signup-form" class="signup-form">
+			<div class="form-group">
+				<label for="signup-name" class="form-label">Full Name *</label>
+				<input type="text" id="signup-name" name="name" class="form-input" required />
+			</div>
+			
+			<div class="form-group">
+				<label for="signup-email" class="form-label">Email Address *</label>
+				<input type="email" id="signup-email" name="email" class="form-input" required />
+			</div>
+			
+			<div class="signup-actions">
+				<button type="submit" class="signup-btn">Continue to Payment</button>
+			</div>
+		</form>
+	</div>
+</div>
+
 	</body>
 </html>

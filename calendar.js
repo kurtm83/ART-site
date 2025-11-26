@@ -464,6 +464,9 @@ function showEventModal(events, date) {
                             Rhino3D.com Link
                         </a>
                         ${event.courseOutline ? `<a href="${event.courseOutline}" target="_blank" class="btn btn-secondary">Course Outline</a>` : ''}
+                        <button class="btn btn-signup" onclick="openSignupForm('${event.id}', '${event.title}', '${event.time}', '${event.price}')">
+                            Sign Up for This Class
+                        </button>
                     </div>
                 </div>
             </div>

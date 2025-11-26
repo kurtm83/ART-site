@@ -332,4 +332,222 @@ function startCarousel() {
 // Initialize carousel when page loads
 document.addEventListener('DOMContentLoaded', function() {
 	loadCarouselImages();
+	
+	// Venmo modal functionality
+	const venmoButton = document.getElementById('venmo-button');
+	const venmoModal = document.getElementById('venmo-modal');
+	const venmoClose = document.getElementById('venmo-close');
+	
+	// Open Venmo modal
+	if (venmoButton) {
+		venmoButton.addEventListener('click', function() {
+			venmoModal.style.display = 'flex';
+		});
+	}
+	
+	// Close Venmo modal
+	if (venmoClose) {
+		venmoClose.addEventListener('click', function() {
+			venmoModal.style.display = 'none';
+		});
+	}
+	
+	// Signup modal functionality
+	const signupModal = document.getElementById('signup-modal');
+	const signupClose = document.getElementById('signup-close');
+	const signupForm = document.getElementById('signup-form');
+	
+	// Close signup modal
+	if (signupClose) {
+		signupClose.addEventListener('click', function() {
+			signupModal.style.display = 'none';
+		});
+	}
+	
+	// Handle signup form submission
+	if (signupForm) {
+		signupForm.addEventListener('submit', function(e) {
+			e.preventDefault();
+			processSignup();
+		});
+	}
+	
+	// Close modal when clicking outside
+	window.addEventListener('click', function(event) {
+		if (event.target === venmoModal) {
+			venmoModal.style.display = 'none';
+		}
+		if (event.target === signupModal) {
+			signupModal.style.display = 'none';
+		}
+	});
 });
+
+// Signup system
+let currentSignup = {
+	classId: null,
+	className: null,
+	classTime: null,
+	classPrice: null
+};
+
+// Open signup form
+function openSignupForm(classId, className, classTime, price) {
+	currentSignup.classId = classId;
+	currentSignup.className = className;
+	currentSignup.classTime = classTime;
+	currentSignup.classPrice = price;
+	
+	// Update class info display
+	document.getElementById('signup-class-info').innerHTML = `
+		<h4>${className}</h4>
+		<p><strong>Schedule:</strong> ${classTime}</p>
+		<p><strong>Price:</strong> ${price}</p>
+	`;
+	
+	// Reset form
+	document.getElementById('signup-form').reset();
+	
+	// Show modal
+	document.getElementById('signup-modal').style.display = 'flex';
+}
+
+// Process signup
+function processSignup() {
+	const name = document.getElementById('signup-name').value.trim();
+	const email = document.getElementById('signup-email').value.trim();
+	
+	if (!name || !email) {
+		alert('Please fill in all required fields');
+		return;
+	}
+	
+	// Check for duplicates
+	if (checkDuplicateSignup(email, currentSignup.classId)) {
+		alert('This email is already registered for this class!');
+		return;
+	}
+	
+	// Store signup data (pending payment)
+	const signupData = {
+		timestamp: new Date().toISOString(),
+		classId: currentSignup.classId,
+		className: currentSignup.className,
+		classTime: currentSignup.classTime,
+		price: currentSignup.classPrice,
+		name: name,
+		email: email,
+		paid: false,
+		paypalTransactionId: null
+	};
+	
+	// Store in localStorage temporarily
+	storeSignup(signupData);
+	
+	// Send email notification
+	sendSignupEmail(signupData);
+	
+	// Close signup modal
+	document.getElementById('signup-modal').style.display = 'none';
+	
+	// Redirect to PayPal with custom data
+	initiatePayPalPayment(signupData);
+}
+
+// Check for duplicate signups
+function checkDuplicateSignup(email, classId) {
+	const signups = JSON.parse(localStorage.getItem('rhinoSignups') || '[]');
+	return signups.some(signup => signup.email === email && signup.classId === classId);
+}
+
+// Store signup in localStorage
+function storeSignup(signupData) {
+	const signups = JSON.parse(localStorage.getItem('rhinoSignups') || '[]');
+	signups.push(signupData);
+	localStorage.setItem('rhinoSignups', JSON.stringify(signups));
+}
+
+// Send email notification via Formspree
+async function sendSignupEmail(signupData) {
+	const emailData = {
+		subject: 'New Rhino Training Signup',
+		message: `
+New training signup details:
+
+Class: ${signupData.className}
+Schedule: ${signupData.classTime}
+Price: ${signupData.price}
+
+Student Information:
+Name: ${signupData.name}
+Email: ${signupData.email}
+
+Status: Pending Payment
+Signup Time: ${new Date(signupData.timestamp).toLocaleString()}
+
+Please verify payment completion.
+		`,
+		name: signupData.name,
+		email: signupData.email,
+		class: signupData.className,
+		price: signupData.price
+	};
+	
+	try {
+		const response = await fetch('https://formspree.io/f/xdkogqnw', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(emailData)
+		});
+		
+		if (response.ok) {
+			console.log('Signup email sent successfully');
+		}
+	} catch (error) {
+		console.error('Error sending signup email:', error);
+	}
+}
+
+// Initiate PayPal payment
+function initiatePayPalPayment(signupData) {
+	// Store current signup for PayPal callback
+	sessionStorage.setItem('pendingSignup', JSON.stringify(signupData));
+	
+	// Close any open modals
+	const eventModal = document.getElementById('event-modal');
+	if (eventModal) {
+		eventModal.classList.remove('active');
+		eventModal.style.display = 'none';
+	}
+	
+	// Scroll to PayPal button and highlight it
+	const paypalSection = document.querySelector('.payment-options');
+	if (paypalSection) {
+		paypalSection.scrollIntoView({ behavior: 'smooth' });
+		
+		// Add visual indicator
+		const paypalOption = document.querySelector('.payment-option:last-child');
+		if (paypalOption) {
+			paypalOption.style.border = '3px solid #00ff00';
+			paypalOption.style.animation = 'pulse 2s infinite';
+			
+			// Show message
+			const message = document.createElement('div');
+			message.innerHTML = `
+				<div style="background: var(--color-lime); color: var(--color-terminal-bg); padding: 1rem; margin: 1rem 0; border-radius: 8px; text-align: center; font-weight: bold;">
+					Complete your signup by paying below ↓
+				</div>
+			`;
+			paypalOption.parentElement.insertBefore(message, paypalOption);
+			
+			// Remove highlight after 10 seconds
+			setTimeout(() => {
+				paypalOption.style.border = '';
+				paypalOption.style.animation = '';
+				message.remove();
+			}, 10000);
+		}
+	}
+}
