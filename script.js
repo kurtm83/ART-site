@@ -510,9 +510,9 @@ Please verify payment completion.
 	}
 }
 
-// Initiate PayPal payment
+// Initiate payment (redirect to payment options)
 function initiatePayPalPayment(signupData) {
-	// Store current signup for PayPal callback
+	// Store current signup for payment callback
 	sessionStorage.setItem('pendingSignup', JSON.stringify(signupData));
 	
 	// Close any open modals
@@ -522,32 +522,34 @@ function initiatePayPalPayment(signupData) {
 		eventModal.style.display = 'none';
 	}
 	
-	// Scroll to PayPal button and highlight it
-	const paypalSection = document.querySelector('.payment-options');
-	if (paypalSection) {
-		paypalSection.scrollIntoView({ behavior: 'smooth' });
+	// Scroll to payment section and highlight both options
+	const paymentSection = document.querySelector('.payment-options');
+	if (paymentSection) {
+		paymentSection.scrollIntoView({ behavior: 'smooth' });
 		
-		// Add visual indicator
-		const paypalOption = document.querySelector('.payment-option:last-child');
-		if (paypalOption) {
-			paypalOption.style.border = '3px solid #00ff00';
-			paypalOption.style.animation = 'pulse 2s infinite';
-			
-			// Show message
-			const message = document.createElement('div');
-			message.innerHTML = `
-				<div style="background: var(--color-lime); color: var(--color-terminal-bg); padding: 1rem; margin: 1rem 0; border-radius: 8px; text-align: center; font-weight: bold;">
-					Complete your signup by paying below ↓
-				</div>
-			`;
-			paypalOption.parentElement.insertBefore(message, paypalOption);
-			
-			// Remove highlight after 10 seconds
-			setTimeout(() => {
-				paypalOption.style.border = '';
-				paypalOption.style.animation = '';
-				message.remove();
-			}, 10000);
-		}
+		// Highlight both payment options
+		const paymentOptions = document.querySelectorAll('.payment-option');
+		paymentOptions.forEach(option => {
+			option.style.border = '3px solid #00ff00';
+			option.style.animation = 'pulse 2s infinite';
+		});
+		
+		// Show message
+		const message = document.createElement('div');
+		message.innerHTML = `
+			<div style="background: var(--color-lime); color: var(--color-terminal-bg); padding: 1rem; margin: 1rem 0; border-radius: 8px; text-align: center; font-weight: bold;">
+				Complete your signup by choosing a payment method below ↓
+			</div>
+		`;
+		paymentSection.parentElement.insertBefore(message, paymentSection);
+		
+		// Remove highlight after 15 seconds
+		setTimeout(() => {
+			paymentOptions.forEach(option => {
+				option.style.border = '';
+				option.style.animation = '';
+			});
+			message.remove();
+		}, 15000);
 	}
 }
