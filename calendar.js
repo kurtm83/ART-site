@@ -1,12 +1,13 @@
 // Training Events Data
 const trainingEvents = [
     {
-        id: 3,
-        title: "Level II - Advanced Rhino 3D Modeling",
-        date: "2025-11-24",
-        endDate: "2025-11-29",
-        colorClass: "event-red",
-        time: "Monday-Saturday/9am-1pm EST (November 24-29, 2025)",
+        id: 4,
+        title: "Level II - Advanced Rhino 3D Modeling - MWF - 2 weeks",
+        date: "2025-12-01",
+        endDate: "2025-12-12",
+        scheduleDays: [1, 3, 5], // Monday=1, Wednesday=3, Friday=5
+        colorClass: "event-blue",
+        time: "Monday, Wednesday, Friday for 2 weeks / 9am-1pm EST (December 1-12, 2025)",
         instructor: "Kurt - Authorized Rhino Trainer",
         level: "Intermediate",
         format: "Online",
@@ -24,6 +25,148 @@ const trainingEvents = [
         contact: "kurt@rhino.training",
         contactUrl: "https://rhino.training/contact",
         language: "English"
+    },
+    {
+        id: 5,
+        title: "Level II - Advanced Rhino 3D Modeling T-TH-S Evenings",
+        date: "2025-12-02",
+        endDate: "2025-12-13",
+        scheduleDays: [2, 4, 6], // Tuesday=2, Thursday=4, Saturday=6
+        colorClass: "event-green",
+        time: "Tuesday, Thursday, Saturday / 5pm-9pm EST / Two weeks (December 2-13, 2025)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Intermediate",
+        format: "Online",
+        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier.",
+        topics: [
+            "Advanced Rhino features and capabilities",
+            "Tips and tricks for efficient modeling",
+            "High quality model creation techniques",
+            "Advanced workflow optimization",
+            "Professional modeling strategies"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English"
+    },
+    {
+        id: 6,
+        title: "Level I - NURBS Modeling - MWF - A.M., 12 days",
+        date: "2026-01-05",
+        endDate: "2026-01-18",
+        scheduleDays: [1, 3, 5], // Monday=1, Wednesday=3, Friday=5
+        colorClass: "event-cyan",
+        time: "Monday, Wednesday, Friday / 9am-1pm EST for 2 weeks (January 5-18, 2026)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Beginner",
+        format: "Online",
+        description: "This comprehensive 12-day Level I class covers the fundamentals of NURBS modeling in Rhino 3D. Perfect for beginners looking to master the basics of 3D modeling.",
+        topics: [
+            "Introduction to NURBS modeling concepts",
+            "Basic Rhino interface and navigation",
+            "Creating and editing curves and surfaces",
+            "Essential modeling tools and techniques",
+            "File management and organization"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English",
+        maxStudents: 6,
+        currentStudents: 0
+    },
+    {
+        id: 7,
+        title: "Level I - NURBS Modeling - T-TH-S Evenings, 17 days",
+        date: "2026-01-06",
+        endDate: "2026-01-22",
+        scheduleDays: [2, 4, 6], // Tuesday=2, Thursday=4, Saturday=6
+        colorClass: "event-orange",
+        time: "Tuesday, Thursday, Saturday / 6pm-9pm EST for 2.5 weeks (January 6-22, 2026)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Beginner",
+        format: "Online",
+        description: "This comprehensive 17-day Level I class covers the fundamentals of NURBS modeling in Rhino 3D. Perfect for beginners looking to master the basics of 3D modeling. Evening schedule designed for working professionals.",
+        topics: [
+            "Introduction to NURBS modeling concepts",
+            "Basic Rhino interface and navigation",
+            "Creating and editing curves and surfaces",
+            "Essential modeling tools and techniques",
+            "File management and organization",
+            "Professional workflow development"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English",
+        maxStudents: 6,
+        currentStudents: 0
+    },
+    {
+        id: 8,
+        title: "Level II - Advanced Rhino 3D Modeling - MWF - A.M., 12 days",
+        date: "2026-01-19",
+        endDate: "2026-01-31",
+        scheduleDays: [1, 3, 5], // Monday=1, Wednesday=3, Friday=5
+        colorClass: "event-purple",
+        time: "Monday, Wednesday, Friday / 9am-1pm EST for 2 weeks (January 19-31, 2026)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Advanced",
+        format: "Online",
+        description: "In this advanced 12-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier. Morning schedule perfect for professionals.",
+        topics: [
+            "Advanced Rhino features and capabilities",
+            "Tips and tricks for efficient modeling",
+            "High quality model creation techniques",
+            "Advanced workflow optimization",
+            "Professional modeling strategies",
+            "Complex surface modeling"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level2/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English",
+        maxStudents: 6,
+        currentStudents: 0
+    },
+    {
+        id: 9,
+        title: "Level II - Advanced Rhino 3D Modeling T-TH-S Evenings, 17 days",
+        date: "2026-01-27",
+        endDate: "2026-02-12",
+        scheduleDays: [2, 4, 6], // Tuesday=2, Thursday=4, Saturday=6
+        colorClass: "event-lime",
+        time: "Tuesday, Thursday, Saturday / 6pm-9pm EST for 2.5 weeks (January 27 - February 12, 2026)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Advanced",
+        format: "Online",
+        description: "In this advanced 17-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier. Evening schedule designed for working professionals.",
+        topics: [
+            "Advanced Rhino features and capabilities",
+            "Tips and tricks for efficient modeling",
+            "High quality model creation techniques",
+            "Advanced workflow optimization",
+            "Professional modeling strategies",
+            "Complex surface modeling",
+            "Advanced troubleshooting techniques"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level2/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English",
+        maxStudents: 6,
+        currentStudents: 0
     },
     {
         id: 4,
@@ -79,9 +222,10 @@ const trainingEvents = [
     }
 ];
 
-// Calendar State
-let currentMonth = 9; // October (0-based, so 9 = October)
-let currentYear = 2025;
+// Calendar State - Always load current month
+const now = new Date();
+let currentMonth = now.getMonth(); // Current month (0-based)
+let currentYear = now.getFullYear();
 
 // Initialize calendar when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -100,11 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('🎯 Starting calendar initialization...');
         initializeCalendar();
         createEventModal();
-        // Additional delay for setting the correct month
-        setTimeout(() => {
-            console.log('🎯 Auto-setting calendar month...');
-            setCalendarToEventMonth();
-        }, 100);
+        // Calendar will stay on current month automatically
     }, 500);
 });
 
@@ -199,6 +339,12 @@ function renderCalendar() {
 
         // Check if this day has an event (including multi-day events)
         const dateString = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        
+        // Debug for January 2026
+        if (currentYear === 2026 && currentMonth === 0) {
+            console.log(`🔍 Checking ${dateString} for events...`);
+        }
+        
         const eventsOnThisDay = trainingEvents.filter(event => {
             // Parse dates consistently to avoid timezone issues
             const [startYear, startMonth, startDay] = event.date.split('-').map(Number);
@@ -303,6 +449,15 @@ function enhanceEventStyling() {
         } else if (day.classList.contains('event-purple')) {
             day.style.setProperty('background-color', 'rgba(155, 89, 182, 0.15)', 'important');
             day.style.setProperty('border', '2px solid #9b59b6', 'important');
+        } else if (day.classList.contains('event-cyan')) {
+            day.style.setProperty('background-color', 'rgba(0, 188, 212, 0.15)', 'important');
+            day.style.setProperty('border', '2px solid #00bcd4', 'important');
+        } else if (day.classList.contains('event-orange')) {
+            day.style.setProperty('background-color', 'rgba(255, 152, 0, 0.15)', 'important');
+            day.style.setProperty('border', '2px solid #ff9800', 'important');
+        } else if (day.classList.contains('event-lime')) {
+            day.style.setProperty('background-color', 'rgba(50, 205, 50, 0.15)', 'important');
+            day.style.setProperty('border', '2px solid #32cd32', 'important');
         }
         
         // Check if we're in cypherpunk theme and apply different colors
@@ -319,6 +474,15 @@ function enhanceEventStyling() {
             } else if (day.classList.contains('event-purple')) {
                 day.style.setProperty('background-color', 'rgba(255, 255, 0, 0.15)', 'important');
                 day.style.setProperty('border', '2px solid #ffff00', 'important');
+            } else if (day.classList.contains('event-cyan')) {
+                day.style.setProperty('background-color', 'rgba(255, 20, 147, 0.15)', 'important');
+                day.style.setProperty('border', '2px solid #ff1493', 'important');
+            } else if (day.classList.contains('event-orange')) {
+                day.style.setProperty('background-color', 'rgba(255, 255, 255, 0.15)', 'important');
+                day.style.setProperty('border', '2px solid #ffffff', 'important');
+            } else if (day.classList.contains('event-lime')) {
+                day.style.setProperty('background-color', 'rgba(255, 0, 255, 0.15)', 'important');
+                day.style.setProperty('border', '2px solid #ff00ff', 'important');
             }
         }
     });
@@ -348,6 +512,15 @@ function enhanceEventStyling() {
         } else if (dot.classList.contains('event-purple')) {
             const color = document.body.classList.contains('cypherpunk-theme') ? '#ffff00' : '#9b59b6';
             dot.style.setProperty('background-color', color, 'important');
+        } else if (dot.classList.contains('event-cyan')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#ff1493' : '#00bcd4';
+            dot.style.setProperty('background-color', color, 'important');
+        } else if (dot.classList.contains('event-orange')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#ffffff' : '#ff9800';
+            dot.style.setProperty('background-color', color, 'important');
+        } else if (dot.classList.contains('event-lime')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#ff00ff' : '#32cd32';
+            dot.style.setProperty('background-color', color, 'important');
         }
     });
     
@@ -374,6 +547,15 @@ function enhanceEventStyling() {
             bar.style.setProperty('background-color', color, 'important');
         } else if (bar.classList.contains('event-purple')) {
             const color = document.body.classList.contains('cypherpunk-theme') ? '#ffff00' : '#9b59b6';
+            bar.style.setProperty('background-color', color, 'important');
+        } else if (bar.classList.contains('event-cyan')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#ff1493' : '#00bcd4';
+            bar.style.setProperty('background-color', color, 'important');
+        } else if (bar.classList.contains('event-orange')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#ffffff' : '#ff9800';
+            bar.style.setProperty('background-color', color, 'important');
+        } else if (bar.classList.contains('event-lime')) {
+            const color = document.body.classList.contains('cypherpunk-theme') ? '#ff00ff' : '#32cd32';
             bar.style.setProperty('background-color', color, 'important');
         }
     });

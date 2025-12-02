@@ -2672,6 +2672,21 @@ body.corporate-theme .booking-form {
     border: 1px solid #9b59b6 !important;
 }
 
+.calendar-day.has-event.event-cyan {
+    background-color: rgba(0, 188, 212, 0.1) !important;
+    border: 1px solid #00bcd4 !important;
+}
+
+.calendar-day.has-event.event-orange {
+    background-color: rgba(255, 152, 0, 0.1) !important;
+    border: 1px solid #ff9800 !important;
+}
+
+.calendar-day.has-event.event-lime {
+    background-color: rgba(50, 205, 50, 0.1) !important;
+    border: 1px solid #32cd32 !important;
+}
+
 /* Event dots and continuation bars - Corporate Theme */
 .event-dot.event-red {
     background-color: #e74c3c !important;
@@ -2701,8 +2716,32 @@ body.corporate-theme .booking-form {
     background-color: #9b59b6 !important;
 }
 
+.event-dot.event-cyan {
+    background-color: #00bcd4 !important;
+}
+
+.event-dot.event-orange {
+    background-color: #ff9800 !important;
+}
+
+.event-dot.event-lime {
+    background-color: #32cd32 !important;
+}
+
 .event-continuation.event-purple {
     background-color: #9b59b6 !important;
+}
+
+.event-continuation.event-cyan {
+    background-color: #00bcd4 !important;
+}
+
+.event-continuation.event-orange {
+    background-color: #ff9800 !important;
+}
+
+.event-continuation.event-lime {
+    background-color: #32cd32 !important;
 }
 
 /* Cypherpunk Theme Event Colors */
@@ -2724,6 +2763,21 @@ body.corporate-theme .booking-form {
 .cypherpunk-theme .calendar-day.has-event.event-purple {
     background-color: rgba(255, 255, 0, 0.1) !important;
     border: 1px solid #ffff00 !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-cyan {
+    background-color: rgba(0, 255, 255, 0.1) !important;
+    border: 1px solid #00ffff !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-orange {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid #ffffff !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-lime {
+    background-color: rgba(255, 0, 255, 0.1) !important;
+    border: 1px solid #ff00ff !important;
 }
 
 /* Event dots and continuation bars - Cypherpunk Theme */
@@ -2755,8 +2809,32 @@ body.corporate-theme .booking-form {
     background-color: #ffff00 !important;
 }
 
+.cypherpunk-theme .event-dot.event-cyan {
+    background-color: #00ffff !important;
+}
+
+.cypherpunk-theme .event-dot.event-orange {
+    background-color: #ffffff !important;
+}
+
+.cypherpunk-theme .event-dot.event-lime {
+    background-color: #ff00ff !important;
+}
+
 .cypherpunk-theme .event-continuation.event-purple {
     background-color: #ffff00 !important;
+}
+
+.cypherpunk-theme .event-continuation.event-cyan {
+    background-color: #00ffff !important;
+}
+
+.cypherpunk-theme .event-continuation.event-orange {
+    background-color: #ffffff !important;
+}
+
+.cypherpunk-theme .event-continuation.event-lime {
+    background-color: #ff00ff !important;
 }
 
 /* Hover effects for colored events */
@@ -2780,6 +2858,21 @@ body.corporate-theme .booking-form {
     transform: scale(1.05) !important;
 }
 
+.calendar-day.has-event.event-cyan:hover {
+    background-color: rgba(0, 188, 212, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
+.calendar-day.has-event.event-orange:hover {
+    background-color: rgba(255, 152, 0, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
+.calendar-day.has-event.event-lime:hover {
+    background-color: rgba(50, 205, 50, 0.2) !important;
+    transform: scale(1.05) !important;
+}
+
 /* Cypherpunk hover effects */
 .cypherpunk-theme .calendar-day.has-event.event-red:hover {
     background-color: rgba(0, 255, 0, 0.2) !important;
@@ -2795,6 +2888,18 @@ body.corporate-theme .booking-form {
 
 .cypherpunk-theme .calendar-day.has-event.event-purple:hover {
     background-color: rgba(255, 255, 0, 0.2) !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-cyan:hover {
+    background-color: rgba(0, 255, 255, 0.2) !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-orange:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.cypherpunk-theme .calendar-day.has-event.event-lime:hover {
+    background-color: rgba(255, 0, 255, 0.2) !important;
 }
 
 /* Event Calendar Styling */

@@ -113,8 +113,8 @@ function forceCorporateCalendarStyles() {
 	// Force calendar headers to be dark text
 	const headers = document.querySelectorAll('.calendar-day-header');
 	headers.forEach(header => {
-		header.style.color = '#222 !important';
-		header.style.background = '#f5f5f5 !important';
+		header.style.setProperty('color', '#222', 'important');
+		header.style.setProperty('background', '#f5f5f5', 'important');
 	});
 	
 	// Force calendar days to be dark text on white background, but preserve event colors
@@ -124,8 +124,20 @@ function forceCorporateCalendarStyles() {
 		
 		// Only set default background if it's NOT an event day
 		if (!day.classList.contains('has-event')) {
-			day.style.background = '#fff';
-			day.style.border = '1px solid rgba(0,0,0,0.1)';
+			day.style.setProperty('background', '#fff', 'important');
+			day.style.setProperty('border', '1px solid rgba(0,0,0,0.1)', 'important');
+		} else {
+			// Ensure event colors are preserved by re-applying them
+			if (day.classList.contains('event-cyan')) {
+				day.style.setProperty('background-color', 'rgba(0, 188, 212, 0.1)', 'important');
+				day.style.setProperty('border', '1px solid #00bcd4', 'important');
+			} else if (day.classList.contains('event-orange')) {
+				day.style.setProperty('background-color', 'rgba(255, 152, 0, 0.1)', 'important');
+				day.style.setProperty('border', '1px solid #ff9800', 'important');
+			} else if (day.classList.contains('event-lime')) {
+				day.style.setProperty('background-color', 'rgba(50, 205, 50, 0.1)', 'important');
+				day.style.setProperty('border', '1px solid #32cd32', 'important');
+			}
 		}
 	});
 	
@@ -138,8 +150,8 @@ function forceCorporateCalendarStyles() {
 	// Force calendar container to have white background
 	const container = document.querySelector('.calendar');
 	if (container) {
-		container.style.background = 'rgba(255,255,255,0.95) !important';
-		container.style.border = '1px solid rgba(0,0,0,0.1) !important';
+		container.style.setProperty('background', 'rgba(255,255,255,0.95)', 'important');
+		container.style.setProperty('border', '1px solid rgba(0,0,0,0.1)', 'important');
 	}
 	
 	console.log('Forced corporate calendar styles applied');
@@ -148,9 +160,62 @@ function forceCorporateCalendarStyles() {
 	if (typeof enhanceEventStyling === 'function') {
 		setTimeout(enhanceEventStyling, 50);
 	}
+	
+	// If calendar elements don't exist yet, set up observer to apply styles when they do
+	if (headers.length === 0 || days.length === 0) {
+		setupCalendarStyleObserver();
+	}
+}
+
+// Observer to watch for calendar DOM changes and reapply corporate styles
+let calendarObserver = null;
+
+function setupCalendarStyleObserver() {
+	if (calendarObserver) {
+		calendarObserver.disconnect();
+	}
+	
+	const targetNode = document.body;
+	const config = { childList: true, subtree: true };
+	
+	calendarObserver = new MutationObserver((mutationsList) => {
+		for (const mutation of mutationsList) {
+			if (mutation.type === 'childList') {
+				// Check if calendar elements were added
+				const addedCalendarElements = Array.from(mutation.addedNodes).some(node => 
+					node.nodeType === 1 && (
+						node.classList && (
+							node.classList.contains('calendar-day') ||
+							node.classList.contains('calendar-day-header') ||
+							node.classList.contains('calendar')
+						) ||
+						node.querySelector && (
+							node.querySelector('.calendar-day') ||
+							node.querySelector('.calendar-day-header') ||
+							node.querySelector('.calendar')
+						)
+					)
+				);
+				
+				if (addedCalendarElements && document.body.classList.contains('corporate-theme')) {
+					setTimeout(() => {
+						forceCorporateCalendarStyles();
+					}, 100);
+				}
+			}
+		}
+	});
+	
+	calendarObserver.observe(targetNode, config);
 }
 
 function removeForcedCalendarStyles() {
+	// Disconnect observer when switching to cypherpunk theme
+	if (calendarObserver) {
+		calendarObserver.disconnect();
+		calendarObserver = null;
+	}
+	
 	// Remove inline styles to restore cypherpunk theme
 	const headers = document.querySelectorAll('.calendar-day-header');
 	headers.forEach(header => {
