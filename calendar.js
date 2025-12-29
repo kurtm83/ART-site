@@ -1,58 +1,6 @@
 // Training Events Data
 const trainingEvents = [
     {
-        id: 4,
-        title: "Level II - Advanced Rhino 3D Modeling - MWF - 2 weeks",
-        date: "2025-12-01",
-        endDate: "2025-12-12",
-        scheduleDays: [1, 3, 5], // Monday=1, Wednesday=3, Friday=5
-        colorClass: "event-blue",
-        time: "Monday, Wednesday, Friday for 2 weeks / 9am-1pm EST (December 1-12, 2025)",
-        instructor: "Kurt - Authorized Rhino Trainer",
-        level: "Intermediate",
-        format: "Online",
-        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier.",
-        topics: [
-            "Advanced Rhino features and capabilities",
-            "Tips and tricks for efficient modeling",
-            "High quality model creation techniques",
-            "Advanced workflow optimization",
-            "Professional modeling strategies"
-        ],
-        price: "US$595",
-        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
-        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
-        contact: "kurt@rhino.training",
-        contactUrl: "https://rhino.training/contact",
-        language: "English"
-    },
-    {
-        id: 5,
-        title: "Level II - Advanced Rhino 3D Modeling T-TH-S Evenings",
-        date: "2025-12-02",
-        endDate: "2025-12-13",
-        scheduleDays: [2, 4, 6], // Tuesday=2, Thursday=4, Saturday=6
-        colorClass: "event-green",
-        time: "Tuesday, Thursday, Saturday / 5pm-9pm EST / Two weeks (December 2-13, 2025)",
-        instructor: "Kurt - Authorized Rhino Trainer",
-        level: "Intermediate",
-        format: "Online",
-        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier.",
-        topics: [
-            "Advanced Rhino features and capabilities",
-            "Tips and tricks for efficient modeling",
-            "High quality model creation techniques",
-            "Advanced workflow optimization",
-            "Professional modeling strategies"
-        ],
-        price: "US$595",
-        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
-        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
-        contact: "kurt@rhino.training",
-        contactUrl: "https://rhino.training/contact",
-        language: "English"
-    },
-    {
         id: 6,
         title: "Level I - NURBS Modeling - MWF - A.M., 12 days",
         date: "2026-01-05",
@@ -82,7 +30,7 @@ const trainingEvents = [
     },
     {
         id: 7,
-        title: "Level I - NURBS Modeling - T-TH-S Evenings, 17 days",
+        title: "Level I - NURBS Modeling - T-TH-S Evenings, 8 days",
         date: "2026-01-06",
         endDate: "2026-01-22",
         scheduleDays: [2, 4, 6], // Tuesday=2, Thursday=4, Saturday=6
@@ -91,7 +39,7 @@ const trainingEvents = [
         instructor: "Kurt - Authorized Rhino Trainer",
         level: "Beginner",
         format: "Online",
-        description: "This comprehensive 17-day Level I class covers the fundamentals of NURBS modeling in Rhino 3D. Perfect for beginners looking to master the basics of 3D modeling. Evening schedule designed for working professionals.",
+        description: "This comprehensive 8-day Level I class covers the fundamentals of NURBS modeling in Rhino 3D. Perfect for beginners looking to master the basics of 3D modeling. Evening schedule designed for working professionals.",
         topics: [
             "Introduction to NURBS modeling concepts",
             "Basic Rhino interface and navigation",
@@ -111,16 +59,16 @@ const trainingEvents = [
     },
     {
         id: 8,
-        title: "Level II - Advanced Rhino 3D Modeling - MWF - A.M., 12 days",
-        date: "2026-01-19",
-        endDate: "2026-01-31",
+        title: "Level II - Advanced Rhino 3D Modeling - MWF - A.M., 6 days",
+        date: "2026-02-02",
+        endDate: "2026-02-13",
         scheduleDays: [1, 3, 5], // Monday=1, Wednesday=3, Friday=5
         colorClass: "event-purple",
-        time: "Monday, Wednesday, Friday / 9am-1pm EST for 2 weeks (January 19-31, 2026)",
+        time: "Monday, Wednesday, Friday / 9am-1pm EST for 2 weeks (February 2-13, 2026)",
         instructor: "Kurt - Authorized Rhino Trainer",
         level: "Advanced",
         format: "Online",
-        description: "In this advanced 12-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier. Morning schedule perfect for professionals.",
+        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier. Morning schedule perfect for professionals.",
         topics: [
             "Advanced Rhino features and capabilities",
             "Tips and tricks for efficient modeling",
@@ -140,16 +88,16 @@ const trainingEvents = [
     },
     {
         id: 9,
-        title: "Level II - Advanced Rhino 3D Modeling T-TH-S Evenings, 17 days",
-        date: "2026-01-27",
-        endDate: "2026-02-12",
+        title: "Level II - Advanced Rhino 3D Modeling T-TH-S Evenings, 8 days",
+        date: "2026-02-03",
+        endDate: "2026-02-19",
         scheduleDays: [2, 4, 6], // Tuesday=2, Thursday=4, Saturday=6
         colorClass: "event-lime",
-        time: "Tuesday, Thursday, Saturday / 6pm-9pm EST for 2.5 weeks (January 27 - February 12, 2026)",
+        time: "Tuesday, Thursday, Saturday / 6pm-9pm EST for 2.5 weeks (February 3 - February 19, 2026)",
         instructor: "Kurt - Authorized Rhino Trainer",
         level: "Advanced",
         format: "Online",
-        description: "In this advanced 17-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier. Evening schedule designed for working professionals.",
+        description: "In this advanced 8-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier. Evening schedule designed for working professionals.",
         topics: [
             "Advanced Rhino features and capabilities",
             "Tips and tricks for efficient modeling",
@@ -167,58 +115,6 @@ const trainingEvents = [
         language: "English",
         maxStudents: 6,
         currentStudents: 0
-    },
-    {
-        id: 4,
-        title: "Level II - Advanced Rhino 3D Modeling - MWF - 2 weeks",
-        date: "2025-12-01",
-        endDate: "2025-12-12",
-        scheduleDays: [1, 3, 5], // Monday=1, Wednesday=3, Friday=5
-        colorClass: "event-blue",
-        time: "Monday, Wednesday, Friday for 2 weeks / 9am-1pm EST (December 1-12, 2025)",
-        instructor: "Kurt - Authorized Rhino Trainer",
-        level: "Intermediate",
-        format: "Online",
-        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier.",
-        topics: [
-            "Advanced Rhino features and capabilities",
-            "Tips and tricks for efficient modeling",
-            "High quality model creation techniques",
-            "Advanced workflow optimization",
-            "Professional modeling strategies"
-        ],
-        price: "US$595",
-        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
-        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
-        contact: "kurt@rhino.training",
-        contactUrl: "https://rhino.training/contact",
-        language: "English"
-    },
-    {
-        id: 5,
-        title: "Level II - Advanced Rhino 3D Modeling T-TH-S Evenings",
-        date: "2025-12-02",
-        endDate: "2025-12-13",
-        scheduleDays: [2, 4, 6], // Tuesday=2, Thursday=4, Saturday=6
-        colorClass: "event-green",
-        time: "Tuesday, Thursday, Saturday / 5pm-9pm EST / Two weeks (December 2-13, 2025)",
-        instructor: "Kurt - Authorized Rhino Trainer",
-        level: "Intermediate",
-        format: "Online",
-        description: "In this advanced 6-day class you will learn to take advantage of Rhino's advanced features. You will also learn tips and tricks for making high quality models faster and easier.",
-        topics: [
-            "Advanced Rhino features and capabilities",
-            "Tips and tricks for efficient modeling",
-            "High quality model creation techniques",
-            "Advanced workflow optimization",
-            "Professional modeling strategies"
-        ],
-        price: "US$595",
-        rhinoUrl: "https://www.rhino3d.com/training/4051/?lang=en&format=Online",
-        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
-        contact: "kurt@rhino.training",
-        contactUrl: "https://rhino.training/contact",
-        language: "English"
     }
 ];
 
