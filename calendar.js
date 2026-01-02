@@ -2,16 +2,16 @@
 const trainingEvents = [
     {
         id: 6,
-        title: "Level I - NURBS Modeling - MWF - A.M., 12 days",
+        title: "Level I - NURBS Modeling - MWF - A.M., 6 days",
         date: "2026-01-05",
-        endDate: "2026-01-18",
+        endDate: "2026-01-16",
         scheduleDays: [1, 3, 5], // Monday=1, Wednesday=3, Friday=5
         colorClass: "event-cyan",
-        time: "Monday, Wednesday, Friday / 9am-1pm EST for 2 weeks (January 5-18, 2026)",
+        time: "Monday, Wednesday, Friday / 9am-1pm EST for 2 weeks (January 5-16, 2026)",
         instructor: "Kurt - Authorized Rhino Trainer",
         level: "Beginner",
         format: "Online",
-        description: "This comprehensive 12-day Level I class covers the fundamentals of NURBS modeling in Rhino 3D. Perfect for beginners looking to master the basics of 3D modeling.",
+        description: "This comprehensive 6-day Level I class covers the fundamentals of NURBS modeling in Rhino 3D. Perfect for beginners looking to master the basics of 3D modeling.",
         topics: [
             "Introduction to NURBS modeling concepts",
             "Basic Rhino interface and navigation",
