@@ -115,6 +115,64 @@ const trainingEvents = [
         language: "English",
         maxStudents: 6,
         currentStudents: 0
+    },
+    {
+        id: 10,
+        title: "Level I - NURBS Modeling - MWF - A.M., 6 days",
+        date: "2026-02-16",
+        endDate: "2026-02-27",
+        scheduleDays: [1, 3, 5], // Monday=1, Wednesday=3, Friday=5
+        colorClass: "event-red",
+        time: "Monday, Wednesday, Friday / 9am-1pm EST for 2 weeks (February 16-27, 2026)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Beginner",
+        format: "Online",
+        description: "In this 6-day Level I class you'll learn to create and edit accurate free-form 3-D NURBS models. This fast-moving class covers most of Rhino's functionality, including the most advanced surfacing commands.",
+        topics: [
+            "Introduction to NURBS modeling concepts",
+            "Basic Rhino interface and navigation",
+            "Creating and editing curves and surfaces",
+            "Essential modeling tools and techniques",
+            "File management and organization",
+            "Advanced surfacing commands"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English",
+        maxStudents: 6,
+        currentStudents: 0
+    },
+    {
+        id: 11,
+        title: "Level I - NURBS Modeling - T-TH-S Evenings, 8 days",
+        date: "2026-02-24",
+        endDate: "2026-03-12",
+        scheduleDays: [2, 4, 6], // Tuesday=2, Thursday=4, Saturday=6
+        colorClass: "event-blue",
+        time: "Tuesday, Thursday, Saturday / 6pm-9pm EST for 2.5 weeks (February 24 - March 12, 2026)",
+        instructor: "Kurt - Authorized Rhino Trainer",
+        level: "Beginner",
+        format: "Online",
+        description: "In this 8-day Level I class you'll learn to create and edit accurate free-form 3-D NURBS models. This fast-moving class covers most of Rhino's functionality, including the most advanced surfacing commands. This is a 3-hour evening class that begins at 6pm Eastern Standard Time for folks with 9-5 jobs.",
+        topics: [
+            "Introduction to NURBS modeling concepts",
+            "Basic Rhino interface and navigation",
+            "Creating and editing curves and surfaces",
+            "Essential modeling tools and techniques",
+            "File management and organization",
+            "Advanced surfacing commands"
+        ],
+        price: "US$595",
+        rhinoUrl: "https://www.rhino3d.com/training/",
+        courseOutline: "https://docs.mcneel.com/rhino/8/training-level1/en-us/Default.htm",
+        contact: "kurt@rhino.training",
+        contactUrl: "https://rhino.training/contact",
+        language: "English",
+        maxStudents: 6,
+        currentStudents: 0
     }
 ];
 
