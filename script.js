@@ -266,7 +266,8 @@ logo.addEventListener('click', function() {
 	}
 });
 
-// Dynamic Carousel functionality
+// Dynamic Carousel functionality - COMMENTED OUT (Now using reviews.js)
+/*
 let currentSlide = 0;
 let slides = [];
 
@@ -393,10 +394,11 @@ function startCarousel() {
         slides[currentSlide].style.zIndex = '2';
     }, 5000); // Change every 5 seconds
 }
+*/
 
-// Initialize carousel when page loads
+// Initialize carousel when page loads - REMOVED (Now using reviews.js)
 document.addEventListener('DOMContentLoaded', function() {
-	loadCarouselImages();
+	// loadCarouselImages(); // COMMENTED OUT
 	
 	// Venmo modal functionality
 	const venmoButton = document.getElementById('venmo-button');

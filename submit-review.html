@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Submit Your Review - Rhino.Training</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap"
+		rel="stylesheet"
+	/>
+	<style>
+		.review-submission-page {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 2rem;
+			background: var(--color-bg);
+		}
+		.review-form-container {
+			max-width: 600px;
+			width: 100%;
+			background: var(--card-bg);
+			padding: 3rem;
+			border-radius: 8px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+		.review-form-title {
+			font-size: 2rem;
+			margin-bottom: 1rem;
+			color: var(--text-primary);
+		}
+		.review-form-description {
+			color: var(--text-secondary);
+			margin-bottom: 2rem;
+			line-height: 1.6;
+		}
+		.success-message {
+			display: none;
+			background: #4caf50;
+			color: white;
+			padding: 1rem;
+			border-radius: 4px;
+			margin-bottom: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="review-submission-page">
+		<div class="review-form-container">
+			<h1 class="review-form-title">Share Your Experience</h1>
+			<p class="review-form-description">
+				Thank you for taking the time to share your feedback! Your review helps others learn about our training services.
+			</p>
+			
+			<div id="success-message" class="success-message">
+				Thank you for your review! It will appear on our website shortly.
+			</div>
+
+			<form id="review-submission-form" class="contact-form">
+				<div class="form-group">
+					<label for="reviewer-name" class="form-label">Your Name *</label>
+					<input type="text" id="reviewer-name" name="name" class="form-input" placeholder="John Doe" required />
+				</div>
+
+				<div class="form-group">
+					<label for="reviewer-org" class="form-label">Organization (Optional)</label>
+					<input type="text" id="reviewer-org" name="organization" class="form-input" placeholder="Your company or school" />
+				</div>
+
+				<div class="form-group">
+					<label for="reviewer-email" class="form-label">Email (Private) *</label>
+					<input type="email" id="reviewer-email" name="email" class="form-input" placeholder="your@email.com" required />
+					<small style="color: var(--text-secondary); font-size: 0.875rem;">Your email will not be displayed publicly</small>
+				</div>
+
+				<div class="form-group">
+					<label for="review-text" class="form-label">Your Review *</label>
+					<textarea
+						id="review-text"
+						name="review"
+						class="form-textarea"
+						placeholder="Tell us about your experience with Rhino.Training..."
+						rows="6"
+						required
+					></textarea>
+				</div>
+
+				<button type="submit" class="contact-submit">Submit Review</button>
+			</form>
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+	<!-- Firebase SDK -->
+	<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+	<script src="firebase-config.js"></script>
+	<!-- Reviews System -->
+	<script src="reviews.js"></script>
+</body>
+</html>
