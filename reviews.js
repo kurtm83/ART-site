@@ -116,16 +116,33 @@ function initializeCarousel(totalReviews) {
         updateCarousel();
     }
 
-    // Auto-scroll every 6 seconds
-    const intervalId = setInterval(nextSlide, 6000);
+    // Auto-scroll every 10 seconds
+    const intervalId = setInterval(nextSlide, 10000);
 
-    // Manual navigation
+    // Previous slide function
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalReviews) % totalReviews;
+        updateCarousel();
+    }
+
+    // Manual navigation - dots
     dots.forEach(dot => {
         dot.addEventListener('click', () => {
             currentIndex = parseInt(dot.dataset.index);
             updateCarousel();
         });
     });
+
+    // Manual navigation - arrows
+    const prevArrow = document.getElementById('reviews-prev');
+    const nextArrow = document.getElementById('reviews-next');
+    
+    if (prevArrow) {
+        prevArrow.addEventListener('click', prevSlide);
+    }
+    if (nextArrow) {
+        nextArrow.addEventListener('click', nextSlide);
+    }
 }
 
 // Handle review form submission

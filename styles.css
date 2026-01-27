@@ -3243,7 +3243,7 @@ body.corporate-theme .booking-form {
 
 .review-card {
     min-width: 100%;
-    padding: 3rem;
+    padding: 3rem 6rem;
     text-align: center;
 }
 
@@ -3303,10 +3303,65 @@ body.corporate-theme .booking-form {
     background: var(--accent-hover);
 }
 
+/* Carousel Navigation Arrows */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-arrow:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-arrow-prev {
+    left: 0.5rem;
+}
+
+.carousel-arrow-next {
+    right: 0.5rem;
+}
+
+.corporate-theme .carousel-arrow {
+    background: rgba(52, 73, 94, 0.8);
+}
+
+.corporate-theme .carousel-arrow:hover {
+    background: rgba(52, 73, 94, 1);
+}
+
+.cypherpunk-theme .carousel-arrow {
+    background: rgba(0, 255, 0, 0.2);
+    color: var(--color-lime);
+    border: 2px solid var(--color-lime);
+}
+
+.cypherpunk-theme .carousel-arrow:hover {
+    background: rgba(0, 255, 0, 0.3);
+    box-shadow: 0 0 15px var(--color-lime);
+}
+
 /* Responsive Reviews */
 @media (max-width: 768px) {
     .review-card {
-        padding: 2rem 1.5rem;
+        padding: 2rem 4rem;
     }
     
     .review-text {
